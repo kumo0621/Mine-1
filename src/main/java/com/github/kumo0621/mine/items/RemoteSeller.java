@@ -2,9 +2,7 @@ package com.github.kumo0621.mine.items;
 
 import com.github.kumo0621.mine.Mine;
 import net.kyori.adventure.text.Component;
-import org.bukkit.Location;
 import org.bukkit.Material;
-import org.bukkit.entity.EntityType;
 import org.bukkit.event.player.PlayerInteractEvent;
 
 public class RemoteSeller extends PurchasableSeitiItem implements IRightClickHandler {

@@ -1,16 +1,15 @@
 package com.github.kumo0621.mine.items;
 
-import com.github.kumo0621.mine.items.EnchantableSeitiItem;
 import lombok.Getter;
 import net.kyori.adventure.text.TextComponent;
 import org.bukkit.Material;
 import org.bukkit.enchantments.Enchantment;
 
 public class SeitiTool extends EnchantableSeitiItem {
-    
+
     @Getter
     private final ToolType toolType;
-    
+
     /**
      * 　固有アイテムの型を作成する
      *
@@ -27,7 +26,7 @@ public class SeitiTool extends EnchantableSeitiItem {
         this.toolType = toolType;
     }
 
-    public enum ToolType{
+    public enum ToolType {
         PICKAXE, SHOVEL, AXE;
     }
 }

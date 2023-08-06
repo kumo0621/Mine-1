@@ -8,7 +8,7 @@ public class PurchasableSeitiItem extends SeitiItem implements IPurchasableItem 
 
     @Getter
     private final int price;
-    
+
     /**
      * 　固有アイテムの型を作成する
      *

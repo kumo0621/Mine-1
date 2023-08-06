@@ -12,9 +12,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class AreaMiner extends PurchasableSeitiItem implements IRightClickHandler {
-    
+
     private static List<Player> miningPlayers = new ArrayList<>();
-    
+
     /**
      * 　固有アイテムの型を作成する
      */

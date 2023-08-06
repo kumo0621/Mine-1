@@ -24,7 +24,7 @@ public class CommandGetMoney extends CommandBase {
         sender.sendMessage("あなたの所持金は「" + money + "」です。");
         return true;
     }
-    
+
     @Override
     public boolean testPermission(@NotNull CommandSender target) {
         return true;

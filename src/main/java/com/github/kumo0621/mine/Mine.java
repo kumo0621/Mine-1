@@ -117,21 +117,21 @@ public class Mine extends JavaPlugin implements Listener {
     public void onPlayerInteract(PlayerInteractEvent event) {
         Player player = event.getPlayer();
         Block block = event.getClickedBlock();
-        
-        if(event.getHand() == EquipmentSlot.OFF_HAND)
+
+        if (event.getHand() == EquipmentSlot.OFF_HAND)
             return;
-        if(event.getAction().isLeftClick())
+        if (event.getAction().isLeftClick())
             return;
-        
+
         if (block != null && block.getType() == Material.CHEST) {
             event.setCancelled(true);
             moneyHandler.bell(player);
             return;
         }
-        
+
         ISeitiItem item = SeitiItems.toSeitiItem(event.getItem());
-        if(item instanceof IRightClickHandler){
-            ((IRightClickHandler)item).OnRightClick(event);
+        if (item instanceof IRightClickHandler) {
+            ((IRightClickHandler) item).OnRightClick(event);
             return;
         }
 
@@ -142,7 +142,7 @@ public class Mine extends JavaPlugin implements Listener {
             if (event.getItem().getType() == Material.ANCIENT_DEBRIS) {
                 // Reduce the item count by 1
                 event.getPlayer().getInventory().remove(Material.ANCIENT_DEBRIS);
-                
+
                 // アイテムの取得結果をランダムで決定
                 int randam = new Random().nextInt(100);
                 if (randam == 0) {
@@ -162,22 +162,22 @@ public class Mine extends JavaPlugin implements Listener {
             }
         }
     }
-    
+
     @EventHandler
-    public void onPlayerPickUp(PlayerPickupItemEvent event){
+    public void onPlayerPickUp(PlayerPickupItemEvent event) {
         ISeitiItem item = SeitiItems.toSeitiItem(event.getItem().getItemStack());
-        if(item instanceof IBuffItem)
+        if (item instanceof IBuffItem)
             ((IBuffItem) item).applyBuff(event.getPlayer());
     }
-    
-    public void applyBuffToPlayer(Player onlinePlayer){
+
+    public void applyBuffToPlayer(Player onlinePlayer) {
         Inventory inv = onlinePlayer.getInventory();
         for (ItemStack content : inv.getContents()) {
-            if(content == null)
+            if (content == null)
                 continue;
 
             ISeitiItem item = SeitiItems.toSeitiItem(content);
-            if(!(item instanceof IBuffItem))
+            if (!(item instanceof IBuffItem))
                 continue;
 
             ((IBuffItem) item).applyBuff(onlinePlayer);

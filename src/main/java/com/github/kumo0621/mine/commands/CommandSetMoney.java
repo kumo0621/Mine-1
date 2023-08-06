@@ -25,21 +25,21 @@ public class CommandSetMoney extends CommandBase implements Listener {
     @Override
     public boolean onCommand(@NotNull CommandSender sender, @Nullable String[] arguments) {
         Player targetPlayer = Bukkit.getPlayer(arguments[0]);
-        if(targetPlayer == null){
+        if (targetPlayer == null) {
             sender.sendMessage("プレイヤーを指定してください");
             return true;
         }
-        
+
         int money;
-        try{
+        try {
             money = Integer.parseInt(arguments[1]);
-        }catch (NumberFormatException e){
+        } catch (NumberFormatException e) {
             sender.sendMessage("数値を指定してください");
             return true;
         }
-        
+
         Mine.getInstance().getMoneyHandler().setMoney(targetPlayer, money);
-        
+
         sender.sendMessage(targetPlayer.getName() + "さんの所持金を「" + money + "」にしました。");
         return true;
     }
@@ -50,7 +50,7 @@ public class CommandSetMoney extends CommandBase implements Listener {
             List<String> suggestions = new ArrayList<>();
             String pureBuffer = e.getBuffer().replace("/" + commandName + " ", "");
             Bukkit.getOnlinePlayers().forEach(s -> {
-                if(s.getName().startsWith(pureBuffer))
+                if (s.getName().startsWith(pureBuffer))
                     suggestions.add(s.getName());
             });
             e.setCompletions(suggestions);

@@ -18,9 +18,9 @@ public class CommandHome extends CommandBase {
 
     @Override
     public boolean onCommand(@NotNull CommandSender sender, @Nullable String[] arguments) {
-        Player player = (Player) sender; 
+        Player player = (Player) sender;
         Location targetLocation = Mine.getInstance().getData().getHome(); // B地点の座標を指定
-        if(targetLocation == null){
+        if (targetLocation == null) {
             player.sendMessage("homeが設定されていません");
             return true;
         }

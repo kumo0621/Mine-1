@@ -13,19 +13,19 @@ import java.util.UUID;
  */
 public class MoneyHandler {
 
-    private Map<UUID, Integer> getMap(){
+    private Map<UUID, Integer> getMap() {
         return Mine.getInstance().getData().getMoneyMap();
     }
 
-    public int getMoney(Player player){
-        if(!Mine.getInstance().hasData(player))
+    public int getMoney(Player player) {
+        if (!Mine.getInstance().hasData(player))
             Mine.getInstance().register(player);
-        
+
         return getMap().get(player.getUniqueId());
     }
 
-    public void setMoney(Player player, int money){
-        if(!Mine.getInstance().hasData(player))
+    public void setMoney(Player player, int money) {
+        if (!Mine.getInstance().hasData(player))
             Mine.getInstance().register(player);
 
         getMap().put(player.getUniqueId(), money);
@@ -49,9 +49,9 @@ public class MoneyHandler {
         player.sendMessage("所持金は、" + result + "になりました。");
     }
 
-    public boolean purchase(Player player, IPurchasableItem item){
+    public boolean purchase(Player player, IPurchasableItem item) {
         int purse = getMoney(player);
-        if(purse < item.getPrice()){
+        if (purse < item.getPrice()) {
             player.sendMessage("お金が足りません");
             return false;
         }

@@ -1,14 +1,12 @@
 package com.github.kumo0621.mine;
 
-import lombok.Getter;
-import lombok.Setter;
-import org.bukkit.Location;
 import org.bukkit.configuration.file.FileConfiguration;
-import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.io.File;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.UUID;
 
 /**
  * コンフィグファイルを読み書きする
@@ -17,8 +15,8 @@ public class Config {
     private static final String alreadyJoinedStr = "alreadyJoined";
     private static final String moneyStr = "money.";
     private static final String homeStr = "home";
-    
-    private Data getData(){
+
+    private Data getData() {
         return Mine.getInstance().getData();
     }
 
@@ -29,7 +27,7 @@ public class Config {
         JavaPlugin plugin = Mine.getInstance();
         plugin.saveDefaultConfig();
         FileConfiguration config = plugin.getConfig();
-        
+
         List<String> strList = config.getStringList(alreadyJoinedStr);
         getData().getJoinedPlayerList().clear();
         strList.forEach(s -> getData().getJoinedPlayerList().add(UUID.fromString(s)));
@@ -37,7 +35,7 @@ public class Config {
         getData().getJoinedPlayerList().forEach(uuid -> {
             getData().getMoneyMap().put(uuid, config.getInt(moneyStr + uuid.toString()));
         });
-        
+
         getData().setHome(config.getLocation(homeStr));
     }
 
@@ -55,7 +53,7 @@ public class Config {
         config.set(alreadyJoinedStr, strList);
 
         getData().getMoneyMap().forEach((uuid, integer) -> config.set(moneyStr + uuid.toString(), integer));
-        
+
         config.set(homeStr, getData().getHome());
 
         plugin.saveConfig();

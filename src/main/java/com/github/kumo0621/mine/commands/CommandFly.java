@@ -15,7 +15,7 @@ import java.util.List;
 public class CommandFly extends CommandBase {
 
     private static final String commandName = "fly";
-    
+
     private static final List<Player> flyingPlayersList = new ArrayList<>();
 
     public CommandFly() {
@@ -26,8 +26,8 @@ public class CommandFly extends CommandBase {
     public boolean onCommand(@NotNull CommandSender sender, @Nullable String[] arguments) {
         Player player = (Player) sender;
         int money = Mine.getInstance().getMoneyHandler().getMoney(player);
-        
-        if(money < 100){
+
+        if (money < 100) {
             sender.sendMessage("お金が足りません。100G必要です。");
             return true;
         }
@@ -35,7 +35,7 @@ public class CommandFly extends CommandBase {
             player.sendMessage("クリエイティブモードでは飛行は無効です！");
             return true;
         }
-        if(flyingPlayersList.contains(player)){
+        if (flyingPlayersList.contains(player)) {
             player.sendMessage("現在飛行中です！");
             return true;
         }

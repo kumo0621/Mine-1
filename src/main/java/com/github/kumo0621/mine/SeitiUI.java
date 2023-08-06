@@ -10,9 +10,8 @@ import net.kyori.adventure.text.Component;
 import org.bukkit.entity.Player;
 
 import java.util.Arrays;
-import java.util.Objects;
 
-public class SeitiUI{
+public class SeitiUI {
     public static void openMenu(Player player) {
         PaginatedGui gui = Gui.paginated()
                 .title(Component.text("メニュー"))
@@ -56,7 +55,7 @@ public class SeitiUI{
             int finalI = i;
             GuiItem pickaxeItem = new GuiItem(new ItemCreator(tools[i].getItemStack()).setLore(Component.text(tools[i].getPrice() + "Gで開放")).create(),
                     event -> {
-                        if(Mine.getInstance().getMoneyHandler().purchase(player, tools[finalI]))
+                        if (Mine.getInstance().getMoneyHandler().purchase(player, tools[finalI]))
                             player.sendMessage("ツールを強化しました");
                     });
             gui.setItem(i, pickaxeItem);
@@ -80,7 +79,7 @@ public class SeitiUI{
             int finalI = i;
             GuiItem miscItem = new GuiItem(new ItemCreator(miscItems[i].getItemStack()).setLore(Component.text(miscItems[i].getPrice() + "Gで開放")).create(),
                     event -> {
-                        if(Mine.getInstance().getMoneyHandler().purchase(player, miscItems[finalI]))
+                        if (Mine.getInstance().getMoneyHandler().purchase(player, miscItems[finalI]))
                             player.sendMessage(miscItems[finalI].getName().content() + "を買いました");
                     });
             gui.setItem(i, miscItem);

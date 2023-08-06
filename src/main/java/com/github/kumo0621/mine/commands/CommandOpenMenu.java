@@ -2,7 +2,6 @@ package com.github.kumo0621.mine.commands;
 
 import com.github.kumo0621.mine.CommandBase;
 import com.github.kumo0621.mine.SeitiUI;
-import org.bukkit.Location;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;

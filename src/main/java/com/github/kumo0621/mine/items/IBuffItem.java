@@ -7,6 +7,6 @@ import org.bukkit.entity.Player;
  */
 public interface IBuffItem {
     void applyBuff(Player player);
-    
+
     int buffTime = 220;
 }

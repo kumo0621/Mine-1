@@ -2,8 +2,8 @@ package com.github.kumo0621.mine.commands;
 
 import com.destroystokyo.paper.event.server.AsyncTabCompleteEvent;
 import com.github.kumo0621.mine.CommandBase;
-import com.github.kumo0621.mine.items.ISeitiItem;
 import com.github.kumo0621.mine.Mine;
+import com.github.kumo0621.mine.items.ISeitiItem;
 import com.github.kumo0621.mine.items.SeitiItems;
 import org.bukkit.command.CommandSender;
 import org.bukkit.event.EventHandler;

@@ -43,12 +43,12 @@ public class SeitiItem implements ISeitiItem {
     private final int customModelData;
 
     /**
-     *　固有アイテムの型を作成する
+     * 　固有アイテムの型を作成する
      *
-     * @param name 作りたい固有アイテムの名前(ユーザーが読むので必ず日本語にすること)
-     * @param material 作りたい固有アイテムの元となるバニラアイテム
-     * @param internalName 作りたい固有アイテムの内部的な名前<br>
-     *                     召喚コマンドで使われるので必ず半角英数字にしてスペースの代わりに_を使うこと
+     * @param name            作りたい固有アイテムの名前(ユーザーが読むので必ず日本語にすること)
+     * @param material        作りたい固有アイテムの元となるバニラアイテム
+     * @param internalName    作りたい固有アイテムの内部的な名前<br>
+     *                        召喚コマンドで使われるので必ず半角英数字にしてスペースの代わりに_を使うこと
      * @param customModelData 固有アイテムにセットするカスタムモデルデータ
      */
     @ParametersAreNonnullByDefault
@@ -90,7 +90,7 @@ public class SeitiItem implements ISeitiItem {
 
         String ID = new ItemCreator(itemStack).getStrNBT("SeitiID");
 
-        if(ID == null)
+        if (ID == null)
             return false;
 
         return ID.equals(internalName);
