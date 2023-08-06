@@ -1,18 +1,29 @@
 package com.github.kumo0621.mine;
 
 import com.github.kumo0621.mine.commands.*;
+import com.github.kumo0621.mine.items.IBuffItem;
+import com.github.kumo0621.mine.items.IRightClickHandler;
+import com.github.kumo0621.mine.items.ISeitiItem;
 import com.github.kumo0621.mine.items.SeitiItems;
 import lombok.Getter;
+import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
+import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
+import org.bukkit.event.player.PlayerPickupItemEvent;
+import org.bukkit.inventory.EquipmentSlot;
+import org.bukkit.inventory.Inventory;
+import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scheduler.BukkitRunnable;
+
+import java.util.Random;
 
 public class Mine extends JavaPlugin implements Listener {
 
@@ -54,6 +65,16 @@ public class Mine extends JavaPlugin implements Listener {
                 seitiConfig.saveConfig();
             }
         }.runTaskTimer(this, 0, 1200);//毎分configを保存
+
+        new BukkitRunnable() {
+
+            @Override
+            public void run() {
+                for (Player onlinePlayer : Bukkit.getOnlinePlayers()) {
+                    applyBuffToPlayer(onlinePlayer);
+                }
+            }
+        }.runTaskTimer(this, 0, 200);
     }
 
     @Override
@@ -96,9 +117,82 @@ public class Mine extends JavaPlugin implements Listener {
     public void onPlayerInteract(PlayerInteractEvent event) {
         Player player = event.getPlayer();
         Block block = event.getClickedBlock();
-        if (event.getAction() == Action.RIGHT_CLICK_BLOCK && block != null && block.getType() == Material.CHEST) {
+        
+        if(event.getHand() == EquipmentSlot.OFF_HAND)
+            return;
+        if(event.getAction().isLeftClick())
+            return;
+        
+        if (block != null && block.getType() == Material.CHEST) {
             event.setCancelled(true);
             moneyHandler.bell(player);
+            return;
+        }
+        
+        ISeitiItem item = SeitiItems.toSeitiItem(event.getItem());
+        if(item instanceof IRightClickHandler){
+            ((IRightClickHandler)item).OnRightClick(event);
+            return;
+        }
+
+        if (event.getAction() == Action.RIGHT_CLICK_BLOCK && event.getItem() != null && block != null && block.getType() == Material.SMITHING_TABLE) {
+            event.setCancelled(true);
+
+            // 古代の残骸を持っているか確認
+            if (event.getItem().getType() == Material.ANCIENT_DEBRIS) {
+                // Reduce the item count by 1
+                event.getPlayer().getInventory().remove(Material.ANCIENT_DEBRIS);
+                
+                // アイテムの取得結果をランダムで決定
+                int randam = new Random().nextInt(100);
+                if (randam == 0) {
+                    player.getInventory().addItem(new ItemStack(Material.DIAMOND, 10));
+                    player.sendMessage("古代の残骸を鑑定してダイヤモンドをゲットしました。");
+                } else if (randam == 1) {
+                    player.getInventory().addItem(new ItemStack(Material.COAL, 10));
+                    player.sendMessage("古代の残骸を鑑定して石炭をゲットしました。");
+                } else if (randam == 2) {
+                    player.getInventory().addItem(new ItemStack(Material.IRON_INGOT, 10));
+                    player.sendMessage("古代の残骸を鑑定して鉄インゴットをゲットしました。");
+                } else {
+                    player.sendMessage("古代の残骸を鑑定しましたが、何も起こりませんでした。");
+                }
+            } else {
+                player.sendMessage("古代の残骸を持っていません。");
+            }
         }
     }
+    
+    @EventHandler
+    public void onPlayerPickUp(PlayerPickupItemEvent event){
+        ISeitiItem item = SeitiItems.toSeitiItem(event.getItem().getItemStack());
+        if(item instanceof IBuffItem)
+            ((IBuffItem) item).applyBuff(event.getPlayer());
+    }
+    
+    public void applyBuffToPlayer(Player onlinePlayer){
+        Inventory inv = onlinePlayer.getInventory();
+        for (ItemStack content : inv.getContents()) {
+            if(content == null)
+                continue;
+
+            ISeitiItem item = SeitiItems.toSeitiItem(content);
+            if(!(item instanceof IBuffItem))
+                continue;
+
+            ((IBuffItem) item).applyBuff(onlinePlayer);
+        }
+    }
+
+    @EventHandler
+    public void onBlockBreak(BlockBreakEvent event) {
+        if (event.getBlock().getType() == Material.STONE || event.getBlock().getType() == Material.DEEPSLATE) {
+            // 1%の確率で化石をドロップする
+            int random = new Random().nextInt(100);
+            if (random == 0) {
+                event.getPlayer().getWorld().dropItemNaturally(event.getBlock().getLocation(), new ItemStack(Material.ANCIENT_DEBRIS));
+            }
+        }
+    }
+
 }
