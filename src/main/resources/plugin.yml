@@ -1,0 +1,4 @@
+name: mine
+version: '${project.version}'
+main: com.github.kumo0621.mine.Mine
+api-version: "1.20"
