@@ -1,5 +1,6 @@
-package com.github.kumo0621.mine;
+package com.github.kumo0621.mine.items;
 
+import com.github.kumo0621.mine.ItemCreator;
 import lombok.Getter;
 import net.kyori.adventure.text.TextComponent;
 import org.bukkit.Material;

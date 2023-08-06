@@ -1,4 +1,4 @@
-package com.github.kumo0621.mine;
+package com.github.kumo0621.mine.items;
 import net.kyori.adventure.text.Component;
 import org.bukkit.Material;
 import org.bukkit.enchantments.Enchantment;

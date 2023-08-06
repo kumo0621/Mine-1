@@ -1,11 +1,12 @@
-package com.github.kumo0621.mine;
+package com.github.kumo0621.mine.items;
 
+import com.github.kumo0621.mine.items.EnchantableSeitiItem;
 import lombok.Getter;
 import net.kyori.adventure.text.TextComponent;
 import org.bukkit.Material;
 import org.bukkit.enchantments.Enchantment;
 
-public class SeitiTool extends EnchantableSeitiItem{
+public class SeitiTool extends EnchantableSeitiItem {
     
     @Getter
     private final ToolType toolType;

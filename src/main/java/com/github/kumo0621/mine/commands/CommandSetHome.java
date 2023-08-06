@@ -20,7 +20,7 @@ public class CommandSetHome extends CommandBase {
     public boolean onCommand(@NotNull CommandSender sender, @Nullable String[] arguments) {
         Player player = (Player) sender;
         Location targetLocation = player.getLocation(); // B地点の座標を指定
-        Mine.getInstance().getSeitiConfig().setHome(targetLocation);
+        Mine.getInstance().getData().setHome(targetLocation);
         player.sendMessage("homeを現在の座標で設定しました");
         return true;
     }

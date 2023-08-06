@@ -38,7 +38,7 @@ public class CommandSetMoney extends CommandBase implements Listener {
             return true;
         }
         
-        Mine.getInstance().getSeitiConfig().setMoney(targetPlayer, money);
+        Mine.getInstance().getMoneyHandler().setMoney(targetPlayer, money);
         
         sender.sendMessage(targetPlayer.getName() + "さんの所持金を「" + money + "」にしました。");
         return true;

@@ -1,5 +1,6 @@
 package com.github.kumo0621.mine;
 
+import com.github.kumo0621.mine.items.IPurchasableItem;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
@@ -17,6 +18,9 @@ public class MoneyHandler {
     }
 
     public int getMoney(Player player){
+        if(!Mine.getInstance().hasData(player))
+            Mine.getInstance().register(player);
+        
         return getMap().get(player.getUniqueId());
     }
 
@@ -45,15 +49,15 @@ public class MoneyHandler {
         player.sendMessage("所持金は、" + result + "になりました。");
     }
 
-    public void purchase(Player player, PurchasableSeitiTool tool){
+    public boolean purchase(Player player, IPurchasableItem item){
         int purse = getMoney(player);
-        if(purse < tool.getPrice()){
+        if(purse < item.getPrice()){
             player.sendMessage("お金が足りません");
-            return;
+            return false;
         }
 
-        setMoney(player, purse - tool.getPrice());
-        player.getInventory().addItem(tool.getItemStack());
-        player.sendMessage("ツールを強化しました");
+        setMoney(player, purse - item.getPrice());
+        player.getInventory().addItem(item.getItemStack());
+        return true;
     }
 }

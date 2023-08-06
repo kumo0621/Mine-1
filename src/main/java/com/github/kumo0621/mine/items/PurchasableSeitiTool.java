@@ -1,11 +1,11 @@
-package com.github.kumo0621.mine;
+package com.github.kumo0621.mine.items;
 
 import lombok.Getter;
 import net.kyori.adventure.text.TextComponent;
 import org.bukkit.Material;
 import org.bukkit.enchantments.Enchantment;
 
-public class PurchasableSeitiTool extends SeitiTool implements IPurchasable{
+public class PurchasableSeitiTool extends SeitiTool implements IPurchasableItem {
     
     @Getter
     private final int price;
