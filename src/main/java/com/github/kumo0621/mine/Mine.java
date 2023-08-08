@@ -140,8 +140,7 @@ public class Mine extends JavaPlugin implements Listener {
 
             // 古代の残骸を持っているか確認
             if (event.getItem().getType() == Material.ANCIENT_DEBRIS) {
-                // Reduce the item count by 1
-                event.getPlayer().getInventory().remove(Material.ANCIENT_DEBRIS);
+                event.getItem().setAmount(event.getItem().getAmount() - 1);
 
                 // アイテムの取得結果をランダムで決定
                 int randam = new Random().nextInt(100);
