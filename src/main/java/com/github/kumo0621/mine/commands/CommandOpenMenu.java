@@ -13,6 +13,7 @@ public class CommandOpenMenu extends CommandBase {
 
     public CommandOpenMenu() {
         super(commandName, 0, 0, true);
+        setPermission("");
     }
 
     @Override

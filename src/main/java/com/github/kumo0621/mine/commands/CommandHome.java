@@ -14,6 +14,7 @@ public class CommandHome extends CommandBase {
 
     public CommandHome() {
         super(commandName, 0, 0, true);
+        setPermission("");
     }
 
     @Override
@@ -25,11 +26,6 @@ public class CommandHome extends CommandBase {
             return true;
         }
         player.teleport(targetLocation);
-        return true;
-    }
-
-    @Override
-    public boolean testPermission(@NotNull CommandSender target) {
         return true;
     }
 }

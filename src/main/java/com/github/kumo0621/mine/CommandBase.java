@@ -77,7 +77,7 @@ public abstract class CommandBase extends BukkitCommand implements CommandExecut
         setPermission("seiti." + command);
 
         CommandMap commandMap = Bukkit.getCommandMap();
-        if (!commandMap.register(command, "PhysxMc", this))
+        if (!commandMap.register(command, "Mine", this))
             commandMap.getKnownCommands().replace(command, this);
     }
 
