@@ -20,6 +20,7 @@ public class CommandFly extends CommandBase {
 
     public CommandFly() {
         super(commandName, 0, 0, true);
+        setPermission("");
     }
 
     @Override
@@ -58,11 +59,6 @@ public class CommandFly extends CommandBase {
         }.runTaskLater(Mine.getInstance(), 20 * 60);
 
         player.sendMessage("空を飛べるようになりました。");
-        return true;
-    }
-
-    @Override
-    public boolean testPermission(@NotNull CommandSender target) {
         return true;
     }
 }

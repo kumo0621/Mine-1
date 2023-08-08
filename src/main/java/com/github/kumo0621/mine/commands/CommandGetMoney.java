@@ -16,17 +16,13 @@ public class CommandGetMoney extends CommandBase {
 
     public CommandGetMoney() {
         super(commandName, 0, 0, true);
+        setPermission("");
     }
 
     @Override
     public boolean onCommand(@NotNull CommandSender sender, @Nullable String[] arguments) {
         int money = Mine.getInstance().getMoneyHandler().getMoney((Player) sender);
         sender.sendMessage("あなたの所持金は「" + money + "」です。");
-        return true;
-    }
-
-    @Override
-    public boolean testPermission(@NotNull CommandSender target) {
         return true;
     }
 }

@@ -7,6 +7,7 @@ import java.util.Arrays;
 
 public enum ItemPrices {
     DIRT(Material.DIRT, 5),
+    GRASS_BLOCK(Material.GRASS_BLOCK, 10),
     STONE(Material.STONE, 5),
     COAL(Material.COAL, 15),
     LAPIS_LAZULI(Material.LAPIS_LAZULI, 17),

@@ -1,8 +1,6 @@
 package com.github.kumo0621.mine;
 
-import com.github.kumo0621.mine.items.PurchasableSeitiItem;
-import com.github.kumo0621.mine.items.PurchasableSeitiTool;
-import com.github.kumo0621.mine.items.SeitiItems;
+import com.github.kumo0621.mine.items.*;
 import dev.triumphteam.gui.guis.Gui;
 import dev.triumphteam.gui.guis.GuiItem;
 import dev.triumphteam.gui.guis.PaginatedGui;
@@ -35,6 +33,10 @@ public class SeitiUI {
         GuiItem MiscMenu = new GuiItem(SeitiItems.MISCMENU.get().getItemStack(),
                 event -> openMisc(player));
         gui.setItem(3, MiscMenu);
+
+        GuiItem BookMenu = new GuiItem(SeitiItems.BOOKMENU.get().getItemStack(),
+                event -> openBook(player));
+        gui.setItem(4, BookMenu);
 
         gui.open(player);
     }
@@ -74,6 +76,29 @@ public class SeitiUI {
 
         Object[] objects = Arrays.stream(SeitiItems.values()).map(SeitiItems::get).filter(iSeitiItem -> iSeitiItem instanceof PurchasableSeitiItem).toArray();
         PurchasableSeitiItem[] miscItems = Arrays.copyOf(objects, objects.length, PurchasableSeitiItem[].class);
+
+        for (int i = 0; i < miscItems.length; i++) {
+            int finalI = i;
+            GuiItem miscItem = new GuiItem(new ItemCreator(miscItems[i].getItemStack()).setLore(Component.text(miscItems[i].getPrice() + "Gで開放")).create(),
+                    event -> {
+                        if (Mine.getInstance().getMoneyHandler().purchase(player, miscItems[finalI]))
+                            player.sendMessage(miscItems[finalI].getName().content() + "を買いました");
+                    });
+            gui.setItem(i, miscItem);
+        }
+
+        gui.open(player);
+    }
+    public static void openBook(Player player) {
+        PaginatedGui gui = Gui.paginated()
+                .title(Component.text("本メニュー"))
+                .rows(3)
+                .pageSize(27)
+                .disableAllInteractions()
+                .create();
+
+        Object[] objects = Arrays.stream(SeitiItems.values()).map(SeitiItems::get).filter(iSeitiItem -> iSeitiItem instanceof EnchantableBookSeitiItem).toArray();
+        EnchantableBookSeitiItem[] miscItems = Arrays.copyOf(objects, objects.length, EnchantableBookSeitiItem[].class);
 
         for (int i = 0; i < miscItems.length; i++) {
             int finalI = i;

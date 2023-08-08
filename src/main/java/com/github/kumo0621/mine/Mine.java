@@ -140,19 +140,18 @@ public class Mine extends JavaPlugin implements Listener {
 
             // 古代の残骸を持っているか確認
             if (event.getItem().getType() == Material.ANCIENT_DEBRIS) {
-                // Reduce the item count by 1
-                event.getPlayer().getInventory().remove(Material.ANCIENT_DEBRIS);
+                event.getItem().setAmount(event.getItem().getAmount() - 1);
 
                 // アイテムの取得結果をランダムで決定
-                int randam = new Random().nextInt(100);
+                int randam = new Random().nextInt(50);
                 if (randam == 0) {
-                    player.getInventory().addItem(new ItemStack(Material.DIAMOND, 10));
+                    player.getInventory().addItem(new ItemStack(Material.DIAMOND, 200));
                     player.sendMessage("古代の残骸を鑑定してダイヤモンドをゲットしました。");
                 } else if (randam == 1) {
-                    player.getInventory().addItem(new ItemStack(Material.COAL, 10));
+                    player.getInventory().addItem(new ItemStack(Material.COAL, 20));
                     player.sendMessage("古代の残骸を鑑定して石炭をゲットしました。");
                 } else if (randam == 2) {
-                    player.getInventory().addItem(new ItemStack(Material.IRON_INGOT, 10));
+                    player.getInventory().addItem(new ItemStack(Material.IRON_INGOT, 64));
                     player.sendMessage("古代の残骸を鑑定して鉄インゴットをゲットしました。");
                 } else {
                     player.sendMessage("古代の残骸を鑑定しましたが、何も起こりませんでした。");
