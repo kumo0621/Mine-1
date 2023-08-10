@@ -72,6 +72,12 @@ public class MoneyHandler {
         }
 
         setMoney(player, purse - item.getPrice());
+        Scoreboard scoreboard = Bukkit.getScoreboardManager().getMainScoreboard();
+        Objective objective = scoreboard.getObjective("money"); // Assuming the objective is named "money"
+
+        // Set the score for the player
+        Score score = objective.getScore(player.getName()); // Assuming you're using player's name as score identifier
+        score.setScore(purse);
         player.getInventory().addItem(item.getItemStack());
         return true;
     }
