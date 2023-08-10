@@ -200,7 +200,7 @@ public class Mine extends JavaPlugin implements Listener {
     public void onBlockBreak(BlockBreakEvent event) {
         Player player = event.getPlayer();
         Material blockType = event.getBlock().getType();
-        if (blockType == Material.STONE || blockType == Material.DIRT|| blockType == Material.GRASS_BLOCK|| blockType == Material.DEEPSLATE|| blockType == Material.OAK_LOG) {
+        if (blockType == Material.END_STONE ||blockType == Material.STONE || blockType == Material.DIRT|| blockType == Material.GRASS_BLOCK|| blockType == Material.DEEPSLATE|| blockType == Material.OAK_LOG) {
             increaseScore(player, 1);
         }
         if (event.getBlock().getType() == Material.STONE || event.getBlock().getType() == Material.DEEPSLATE) {
