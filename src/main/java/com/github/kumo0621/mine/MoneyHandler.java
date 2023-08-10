@@ -1,9 +1,13 @@
 package com.github.kumo0621.mine;
 
 import com.github.kumo0621.mine.items.IPurchasableItem;
+import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.scoreboard.Objective;
+import org.bukkit.scoreboard.Score;
+import org.bukkit.scoreboard.Scoreboard;
 
 import java.util.Map;
 import java.util.UUID;
@@ -21,7 +25,11 @@ public class MoneyHandler {
         if (!Mine.getInstance().hasData(player))
             Mine.getInstance().register(player);
 
-        return getMap().get(player.getUniqueId());
+        int moneyAmount = getMap().get(player.getUniqueId());
+
+
+
+        return moneyAmount;
     }
 
     public void setMoney(Player player, int money) {
@@ -47,6 +55,13 @@ public class MoneyHandler {
         int result = money + totalMoneyAmount;
         setMoney(player, result);
         player.sendMessage("所持金は、" + result + "になりました。");
+        // Assuming you have access to the scoreboard and objective instance
+        Scoreboard scoreboard = Bukkit.getScoreboardManager().getMainScoreboard();
+        Objective objective = scoreboard.getObjective("money"); // Assuming the objective is named "money"
+
+        // Set the score for the player
+        Score score = objective.getScore(player.getName()); // Assuming you're using player's name as score identifier
+        score.setScore(result);
     }
 
     public boolean purchase(Player player, IPurchasableItem item) {

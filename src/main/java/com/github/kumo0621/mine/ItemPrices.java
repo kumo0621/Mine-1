@@ -2,11 +2,16 @@ package com.github.kumo0621.mine;
 
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.Merchant;
 
 import java.util.Arrays;
 
 public enum ItemPrices {
     DIRT(Material.DIRT, 5),
+    ENDSTONE(Material.END_STONE,  20),
+    OBSIDIAN(Material.OBSIDIAN, 20),
+    AMETHYST_SHARD(Material.AMETHYST_SHARD,3),
+    NETHERRACK(Material.NETHERRACK, 1),
     GRASS_BLOCK(Material.GRASS_BLOCK, 10),
     STONE(Material.STONE, 5),
     COAL(Material.COAL, 15),

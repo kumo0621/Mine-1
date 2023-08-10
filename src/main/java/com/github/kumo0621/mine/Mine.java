@@ -22,6 +22,10 @@ import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scheduler.BukkitRunnable;
+import org.bukkit.scoreboard.Objective;
+import org.bukkit.scoreboard.Score;
+import org.bukkit.scoreboard.Scoreboard;
+import org.bukkit.scoreboard.ScoreboardManager;
 
 import java.util.Random;
 
@@ -49,6 +53,7 @@ public class Mine extends JavaPlugin implements Listener {
         new CommandSetHome();
         new CommandOpenMenu();
         new CommandFly();
+        new Commandtransaction();
 
         data = new Data();
         moneyHandler = new MoneyHandler();
@@ -145,7 +150,7 @@ public class Mine extends JavaPlugin implements Listener {
                 // アイテムの取得結果をランダムで決定
                 int randam = new Random().nextInt(50);
                 if (randam == 0) {
-                    player.getInventory().addItem(new ItemStack(Material.DIAMOND, 200));
+                    player.getInventory().addItem(new ItemStack(Material.DIAMOND, 100));
                     player.sendMessage("古代の残骸を鑑定してダイヤモンドをゲットしました。");
                 } else if (randam == 1) {
                     player.getInventory().addItem(new ItemStack(Material.COAL, 20));
@@ -182,9 +187,19 @@ public class Mine extends JavaPlugin implements Listener {
             ((IBuffItem) item).applyBuff(onlinePlayer);
         }
     }
+    public void increaseScore(Player player, int amount) {
+        ScoreboardManager scoreboardManager = Bukkit.getScoreboardManager();
+        Scoreboard scoreboard = scoreboardManager.getMainScoreboard();
 
+        Objective objective = scoreboard.getObjective("break");
+
+        Score score = objective.getScore(player.getName());
+        score.setScore(score.getScore() + amount);
+    }
     @EventHandler
     public void onBlockBreak(BlockBreakEvent event) {
+        Player player = event.getPlayer();
+        increaseScore(player, 1);
         if (event.getBlock().getType() == Material.STONE || event.getBlock().getType() == Material.DEEPSLATE) {
             // 1%の確率で化石をドロップする
             int random = new Random().nextInt(100);
