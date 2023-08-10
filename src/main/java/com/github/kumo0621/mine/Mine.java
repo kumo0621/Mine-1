@@ -224,7 +224,7 @@ public class Mine extends JavaPlugin implements Listener {
         Player player = event.getPlayer();
         Material blockType = event.getBlock().getType();
         if (blockType == Material.STONE || blockType == Material.DIRT|| blockType == Material.GRASS_BLOCK|| blockType == Material.DEEPSLATE|| blockType == Material.OAK_LOG) {
-            increaseScore(player, 1);
+            increaseBreakScore(player, 1);
         }
         if (event.getBlock().getType() == Material.STONE || event.getBlock().getType() == Material.DEEPSLATE) {
             // 1%の確率で化石をドロップする
