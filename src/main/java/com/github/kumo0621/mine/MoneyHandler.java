@@ -39,7 +39,7 @@ public class MoneyHandler {
         getMap().put(player.getUniqueId(), money);
     }
 
-    public void bell(Player player) {
+    public void sell(Player player) {
         Inventory playerInventory = player.getInventory();
         int totalMoneyAmount = 0;
         for (int slot = 0; slot < playerInventory.getSize(); slot++) {
@@ -54,7 +54,7 @@ public class MoneyHandler {
         int money = getMoney(player);
         int result = money + totalMoneyAmount;
         setMoney(player, result);
-        player.sendMessage("所持金は、" + result + "になりました。");
+        player.sendMessage("所持金が" + result + "Gになりました。");
         // Assuming you have access to the scoreboard and objective instance
         Scoreboard scoreboard = Bukkit.getScoreboardManager().getMainScoreboard();
         Objective objective = scoreboard.getObjective("money"); // Assuming the objective is named "money"

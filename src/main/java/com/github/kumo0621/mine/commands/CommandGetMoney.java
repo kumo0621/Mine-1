@@ -22,7 +22,7 @@ public class CommandGetMoney extends CommandBase {
     @Override
     public boolean onCommand(@NotNull CommandSender sender, @Nullable String[] arguments) {
         int money = Mine.getInstance().getMoneyHandler().getMoney((Player) sender);
-        sender.sendMessage("あなたの所持金は「" + money + "」です。");
+        sender.sendMessage("あなたの所持金は「" + money + "G」です。");
         return true;
     }
 }

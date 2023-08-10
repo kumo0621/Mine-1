@@ -40,7 +40,7 @@ public class CommandSetMoney extends CommandBase implements Listener {
 
         Mine.getInstance().getMoneyHandler().setMoney(targetPlayer, money);
 
-        sender.sendMessage(targetPlayer.getName() + "さんの所持金を「" + money + "」にしました。");
+        sender.sendMessage(targetPlayer.getName() + "さんの所持金を「" + money + "G」にしました。");
         return true;
     }
 

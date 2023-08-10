@@ -6,7 +6,11 @@ import com.github.kumo0621.mine.items.IRightClickHandler;
 import com.github.kumo0621.mine.items.ISeitiItem;
 import com.github.kumo0621.mine.items.SeitiItems;
 import lombok.Getter;
+import net.kyori.adventure.text.Component;
+import net.md_5.bungee.api.ChatMessageType;
+import net.md_5.bungee.api.chat.BaseComponent;
 import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
@@ -75,11 +79,17 @@ public class Mine extends JavaPlugin implements Listener {
 
             @Override
             public void run() {
+                int x = 0;
                 for (Player onlinePlayer : Bukkit.getOnlinePlayers()) {
-                    applyBuffToPlayer(onlinePlayer);
+                    x++;
+                    if (x >= 200) {
+                        applyBuffToPlayer(onlinePlayer);
+                        x = 0;
+                    }
+                    updateActionBar(onlinePlayer);
                 }
             }
-        }.runTaskTimer(this, 0, 200);
+        }.runTaskTimer(this, 0, 1);
     }
 
     @Override
@@ -108,7 +118,6 @@ public class Mine extends JavaPlugin implements Listener {
     @EventHandler
     public void onPlayerJoin(PlayerJoinEvent event) {
         Player player = event.getPlayer();
-
         // プレイヤーデータからフラグを取得
         boolean isFirstJoin = !hasData(player);
 
@@ -116,6 +125,8 @@ public class Mine extends JavaPlugin implements Listener {
             // 初回ログイン時の処理
             register(player);
         }
+
+        updateActionBar(player);
     }
 
     @EventHandler
@@ -130,7 +141,7 @@ public class Mine extends JavaPlugin implements Listener {
 
         if (block != null && block.getType() == Material.CHEST) {
             event.setCancelled(true);
-            moneyHandler.bell(player);
+            moneyHandler.sell(player);
             return;
         }
 
@@ -198,7 +209,7 @@ public class Mine extends JavaPlugin implements Listener {
         score.setScore(score.getScore() + amount);
     }
     
-    public int getBreakScore(Player player) {
+    public static int getBreakScore(Player player) {
         ScoreboardManager scoreboardManager = Bukkit.getScoreboardManager();
         Scoreboard scoreboard = scoreboardManager.getMainScoreboard();
 
@@ -213,6 +224,7 @@ public class Mine extends JavaPlugin implements Listener {
         Player player = event.getPlayer();
         // TODO : 壊したブロックの判定を追加する
         increaseBreakScore(player, 1);
+        updateActionBar(player);
         if (event.getBlock().getType() == Material.STONE || event.getBlock().getType() == Material.DEEPSLATE) {
             // 1%の確率で化石をドロップする
             int random = new Random().nextInt(100);
@@ -222,4 +234,11 @@ public class Mine extends JavaPlugin implements Listener {
         }
     }
 
+    public static void updateActionBar(Player player) {
+        // 採掘量と所持金をアクションバーに表示
+        int breakScore = getBreakScore(player);
+        int money = Mine.getInstance().data.getMoneyMap().get(player.getUniqueId());
+        player.sendActionBar(Component.text(ChatColor.AQUA + "所持金: " + money + "G   " + ChatColor.GREEN + "採掘量: " + breakScore));
+
+    }
 }

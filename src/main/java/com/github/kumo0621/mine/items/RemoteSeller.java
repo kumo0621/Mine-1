@@ -15,7 +15,7 @@ public class RemoteSeller extends PurchasableSeitiItem implements IRightClickHan
 
     @Override
     public void OnRightClick(PlayerInteractEvent event) {
-        Mine.getInstance().getMoneyHandler().bell(event.getPlayer());
+        Mine.getInstance().getMoneyHandler().sell(event.getPlayer());
         event.getItem().setAmount(event.getItem().getAmount() - 1);
     }
 }
