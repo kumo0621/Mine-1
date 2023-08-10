@@ -6,7 +6,11 @@ import com.github.kumo0621.mine.items.IRightClickHandler;
 import com.github.kumo0621.mine.items.ISeitiItem;
 import com.github.kumo0621.mine.items.SeitiItems;
 import lombok.Getter;
+import net.kyori.adventure.text.Component;
+import net.md_5.bungee.api.ChatMessageType;
+import net.md_5.bungee.api.chat.BaseComponent;
 import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
@@ -75,11 +79,17 @@ public class Mine extends JavaPlugin implements Listener {
 
             @Override
             public void run() {
+                int x = 0;
                 for (Player onlinePlayer : Bukkit.getOnlinePlayers()) {
-                    applyBuffToPlayer(onlinePlayer);
+                    x++;
+                    if (x >= 200) {
+                        applyBuffToPlayer(onlinePlayer);
+                        x = 0;
+                    }
+                    updateActionBar(onlinePlayer);
                 }
             }
-        }.runTaskTimer(this, 0, 200);
+        }.runTaskTimer(this, 0, 1);
     }
 
     @Override
@@ -108,7 +118,6 @@ public class Mine extends JavaPlugin implements Listener {
     @EventHandler
     public void onPlayerJoin(PlayerJoinEvent event) {
         Player player = event.getPlayer();
-
         // プレイヤーデータからフラグを取得
         boolean isFirstJoin = !hasData(player);
 
@@ -116,6 +125,8 @@ public class Mine extends JavaPlugin implements Listener {
             // 初回ログイン時の処理
             register(player);
         }
+
+        updateActionBar(player);
     }
 
     @EventHandler
@@ -130,7 +141,7 @@ public class Mine extends JavaPlugin implements Listener {
 
         if (block != null && block.getType() == Material.CHEST) {
             event.setCancelled(true);
-            moneyHandler.bell(player);
+            moneyHandler.sell(player);
             return;
         }
 
@@ -148,14 +159,14 @@ public class Mine extends JavaPlugin implements Listener {
                 event.getItem().setAmount(event.getItem().getAmount() - 1);
 
                 // アイテムの取得結果をランダムで決定
-                int randam = new Random().nextInt(50);
-                if (randam == 0) {
+                int random = new Random().nextInt(50);
+                if (random == 0) {
                     player.getInventory().addItem(new ItemStack(Material.DIAMOND, 100));
                     player.sendMessage("古代の残骸を鑑定してダイヤモンドをゲットしました。");
-                } else if (randam == 1) {
+                } else if (random == 1) {
                     player.getInventory().addItem(new ItemStack(Material.COAL, 20));
                     player.sendMessage("古代の残骸を鑑定して石炭をゲットしました。");
-                } else if (randam == 2) {
+                } else if (random == 2) {
                     player.getInventory().addItem(new ItemStack(Material.IRON_INGOT, 64));
                     player.sendMessage("古代の残骸を鑑定して鉄インゴットをゲットしました。");
                 } else {
@@ -187,7 +198,8 @@ public class Mine extends JavaPlugin implements Listener {
             ((IBuffItem) item).applyBuff(onlinePlayer);
         }
     }
-    public void increaseScore(Player player, int amount) {
+
+    public void increaseBreakScore(Player player, int amount) {
         ScoreboardManager scoreboardManager = Bukkit.getScoreboardManager();
         Scoreboard scoreboard = scoreboardManager.getMainScoreboard();
 
@@ -196,12 +208,23 @@ public class Mine extends JavaPlugin implements Listener {
         Score score = objective.getScore(player.getName());
         score.setScore(score.getScore() + amount);
     }
+    
+    public static int getBreakScore(Player player) {
+        ScoreboardManager scoreboardManager = Bukkit.getScoreboardManager();
+        Scoreboard scoreboard = scoreboardManager.getMainScoreboard();
+
+        Objective objective = scoreboard.getObjective("break");
+
+        Score score = objective.getScore(player.getName());
+        return score.getScore();
+    }
+    
     @EventHandler
     public void onBlockBreak(BlockBreakEvent event) {
         Player player = event.getPlayer();
         Material blockType = event.getBlock().getType();
-        if (blockType == Material.END_STONE ||blockType == Material.STONE || blockType == Material.DIRT|| blockType == Material.GRASS_BLOCK|| blockType == Material.DEEPSLATE|| blockType == Material.OAK_LOG) {
-            increaseScore(player, 1);
+        if (blockType == Material.STONE || blockType == Material.DIRT|| blockType == Material.GRASS_BLOCK|| blockType == Material.DEEPSLATE|| blockType == Material.OAK_LOG) {
+            increaseBreakScore(player, 1);
         }
         if (event.getBlock().getType() == Material.STONE || event.getBlock().getType() == Material.DEEPSLATE) {
             // 1%の確率で化石をドロップする
@@ -212,4 +235,11 @@ public class Mine extends JavaPlugin implements Listener {
         }
     }
 
+    public static void updateActionBar(Player player) {
+        // 採掘量と所持金をアクションバーに表示
+        int breakScore = getBreakScore(player);
+        int money = Mine.getInstance().data.getMoneyMap().get(player.getUniqueId());
+        player.sendActionBar(Component.text(ChatColor.AQUA + "所持金: " + money + "G   " + ChatColor.GREEN + "採掘量: " + breakScore));
+
+    }
 }

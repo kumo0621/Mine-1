@@ -12,6 +12,7 @@ import java.util.UUID;
  * コンフィグファイルを読み書きする
  */
 public class Config {
+
     private static final String alreadyJoinedStr = "alreadyJoined";
     private static final String moneyStr = "money.";
     private static final String homeStr = "home";

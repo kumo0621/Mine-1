@@ -10,6 +10,7 @@ import org.bukkit.entity.Player;
 import java.util.Arrays;
 
 public class SeitiUI {
+
     public static void openMenu(Player player) {
         PaginatedGui gui = Gui.paginated()
                 .title(Component.text("メニュー"))
@@ -89,6 +90,7 @@ public class SeitiUI {
 
         gui.open(player);
     }
+
     public static void openBook(Player player) {
         PaginatedGui gui = Gui.paginated()
                 .title(Component.text("本メニュー"))
