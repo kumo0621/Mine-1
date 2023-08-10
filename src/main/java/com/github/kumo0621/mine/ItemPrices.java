@@ -37,7 +37,11 @@ public enum ItemPrices {
     BIRCH_LOG(Material.BIRCH_LOG, 10),
     SPRUCE_LOG(Material.SPRUCE_LOG, 10),
     COBBLED_DEEPSLATE(Material.COBBLED_DEEPSLATE, 5),
+    GRANITE(Material.GRANITE, 5),
+    DIORITE(Material.DIORITE,5),
+    ANDESITE(Material.ANDESITE ,5),
     COBBLESTONE(Material.COBBLESTONE, 5);
+
 
     private final Material material;
     private final int price;

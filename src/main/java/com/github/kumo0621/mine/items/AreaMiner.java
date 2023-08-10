@@ -19,7 +19,7 @@ public class AreaMiner extends PurchasableSeitiItem implements IRightClickHandle
      * 　固有アイテムの型を作成する
      */
     public AreaMiner() {
-        super(Component.text("右クリックで範囲採掘できる"), Material.PAPER, "blockbreak", 0, 100);
+        super(Component.text("右クリックで範囲採掘できる"), Material.PAPER, "blockbreak", 0, 500);
     }
 
     @Override
@@ -35,7 +35,7 @@ public class AreaMiner extends PurchasableSeitiItem implements IRightClickHandle
         miningPlayers.add(player);
         // 30秒間、3x3の範囲内のブロックを採掘可能にする処理を開始
         new BukkitRunnable() {
-            int timer = 30;
+            int timer = 1;
 
             @Override
             public void run() {
@@ -45,7 +45,7 @@ public class AreaMiner extends PurchasableSeitiItem implements IRightClickHandle
                         for (int y = -1; y <= 1; y++) {
                             for (int z = -1; z <= 1; z++) {
                                 Block block = player.getLocation().getBlock().getRelative(x, y, z);
-                                if (block.getType() != Material.BEDROCK) {
+                                if (block.getType() == Material.STONE) {
                                     block.breakNaturally();
                                 }
                             }

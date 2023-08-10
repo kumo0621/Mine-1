@@ -13,8 +13,8 @@ import java.util.Arrays;
  */
 public enum SeitiItems {
     BEGINNER_PICKAXE(new SeitiTool(Component.text("初心者のツルハシ"), Material.DIAMOND_PICKAXE, "beginner_pickaxe", 1, Enchantment.DIG_SPEED, 0, SeitiTool.ToolType.PICKAXE)),
-    INTERMEDIATE_PICKAXE(new PurchasableSeitiTool(Component.text("中級者のツルハシ"), Material.DIAMOND_PICKAXE, "intermediate_pickaxe", 2, Enchantment.DIG_SPEED, 0, PurchasableSeitiTool.ToolType.PICKAXE, 1000)),
-    HARD_PICKAXE(new PurchasableSeitiTool(Component.text("上級者のツルハシ"), Material.DIAMOND_PICKAXE, "hard_pickaxe", 3, Enchantment.DIG_SPEED, 1, PurchasableSeitiTool.ToolType.PICKAXE, 7000)),
+    INTERMEDIATE_PICKAXE(new PurchasableSeitiTool(Component.text("中級者のツルハシ"), Material.DIAMOND_PICKAXE, "intermediate_pickaxe", 2, Enchantment.DIG_SPEED, 1, PurchasableSeitiTool.ToolType.PICKAXE, 1000)),
+    HARD_PICKAXE(new PurchasableSeitiTool(Component.text("上級者のツルハシ"), Material.DIAMOND_PICKAXE, "hard_pickaxe", 3, Enchantment.DIG_SPEED, 2, PurchasableSeitiTool.ToolType.PICKAXE, 7000)),
     VETERAN_PICKAXE(new PurchasableSeitiTool(Component.text("ベテランのツルハシ"), Material.DIAMOND_PICKAXE, "veteran_pickaxe", 4, Enchantment.DIG_SPEED, 3, PurchasableSeitiTool.ToolType.PICKAXE, 10000)),
     VERY_VETERAN_PICKAXE(new PurchasableSeitiTool(Component.text("すごくベテランのツルハシ"), Material.DIAMOND_PICKAXE, "very_veteran_pickaxe", 5, Enchantment.DIG_SPEED, 5, PurchasableSeitiTool.ToolType.PICKAXE, 20000)),
     GREAT_PICKAXE(new PurchasableSeitiTool(Component.text("すごくすごいベテランのツルハシ"), Material.DIAMOND_PICKAXE, "great_pickaxe", 6, Enchantment.DIG_SPEED, 7, PurchasableSeitiTool.ToolType.PICKAXE, 40000)),
@@ -26,7 +26,7 @@ public enum SeitiItems {
     SILK_TOUCH(new EnchantableBookSeitiItem(Component.text("シルクタッチ"), Material.ENCHANTED_BOOK, "シルクタッチ", 0, Enchantment.SILK_TOUCH, 0, SeitiTool.ToolType.PICKAXE, 10000)),
 
     BEGINNER_SHOVEL(new SeitiTool(Component.text("初心者のシャベル"), Material.DIAMOND_SHOVEL, "beginner_shovel", 1, Enchantment.DIG_SPEED, 0, SeitiTool.ToolType.SHOVEL)),
-    INTERMEDIATE_SHOVEL(new PurchasableSeitiTool(Component.text("中級者のシャベル"), Material.DIAMOND_SHOVEL, "intermediate_shovel", 2, Enchantment.DIG_SPEED, 0, PurchasableSeitiTool.ToolType.SHOVEL, 1000)),
+    INTERMEDIATE_SHOVEL(new PurchasableSeitiTool(Component.text("中級者のシャベル"), Material.DIAMOND_SHOVEL, "intermediate_shovel", 2, Enchantment.DIG_SPEED, 2, PurchasableSeitiTool.ToolType.SHOVEL, 1000)),
     Senior_SHOVEL(new PurchasableSeitiTool(Component.text("上級者のシャベル"), Material.DIAMOND_SHOVEL, "Senior_shovel", 3, Enchantment.DIG_SPEED, 3, PurchasableSeitiTool.ToolType.SHOVEL, 20000)),
     very_SHOVEL(new PurchasableSeitiTool(Component.text("すごいのシャベル"), Material.DIAMOND_SHOVEL, "very_shovel", 4, Enchantment.DIG_SPEED, 6, PurchasableSeitiTool.ToolType.SHOVEL, 50000)),
     Mecha_SHOVEL(new PurchasableSeitiTool(Component.text("めっちゃのシャベル"), Material.DIAMOND_SHOVEL, "Mecha_shovel", 5, Enchantment.DIG_SPEED, 9, PurchasableSeitiTool.ToolType.SHOVEL, 80000)),
