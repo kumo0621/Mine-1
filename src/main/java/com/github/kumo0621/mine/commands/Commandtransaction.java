@@ -3,15 +3,10 @@ package com.github.kumo0621.mine.commands;
 import com.github.kumo0621.mine.CommandBase;
 import com.github.kumo0621.mine.Mine;
 import org.bukkit.Bukkit;
-import org.bukkit.GameMode;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
-import org.bukkit.scheduler.BukkitRunnable;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class Commandtransaction extends CommandBase {
 

@@ -27,6 +27,6 @@ public class SeitiTool extends EnchantableSeitiItem {
     }
 
     public enum ToolType {
-        PICKAXE, SHOVEL, AXE;
+        PICKAXE, SHOVEL, AXE
     }
 }

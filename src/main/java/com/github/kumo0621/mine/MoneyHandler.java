@@ -44,7 +44,7 @@ public class MoneyHandler {
         int totalMoneyAmount = 0;
         for (int slot = 0; slot < playerInventory.getSize(); slot++) {
             ItemStack currentItem = playerInventory.getItem(slot);
-            int price = ItemPrices.getprice(currentItem);
+            int price = ItemPrices.getPrice(currentItem);
             if (price != 0) {
                 totalMoneyAmount += price;
                 playerInventory.setItem(slot, null); // アイテムをインベントリから削除

@@ -148,14 +148,14 @@ public class Mine extends JavaPlugin implements Listener {
                 event.getItem().setAmount(event.getItem().getAmount() - 1);
 
                 // アイテムの取得結果をランダムで決定
-                int randam = new Random().nextInt(50);
-                if (randam == 0) {
+                int random = new Random().nextInt(50);
+                if (random == 0) {
                     player.getInventory().addItem(new ItemStack(Material.DIAMOND, 100));
                     player.sendMessage("古代の残骸を鑑定してダイヤモンドをゲットしました。");
-                } else if (randam == 1) {
+                } else if (random == 1) {
                     player.getInventory().addItem(new ItemStack(Material.COAL, 20));
                     player.sendMessage("古代の残骸を鑑定して石炭をゲットしました。");
-                } else if (randam == 2) {
+                } else if (random == 2) {
                     player.getInventory().addItem(new ItemStack(Material.IRON_INGOT, 64));
                     player.sendMessage("古代の残骸を鑑定して鉄インゴットをゲットしました。");
                 } else {
@@ -187,7 +187,8 @@ public class Mine extends JavaPlugin implements Listener {
             ((IBuffItem) item).applyBuff(onlinePlayer);
         }
     }
-    public void increaseScore(Player player, int amount) {
+
+    public void increaseBreakScore(Player player, int amount) {
         ScoreboardManager scoreboardManager = Bukkit.getScoreboardManager();
         Scoreboard scoreboard = scoreboardManager.getMainScoreboard();
 
@@ -196,10 +197,22 @@ public class Mine extends JavaPlugin implements Listener {
         Score score = objective.getScore(player.getName());
         score.setScore(score.getScore() + amount);
     }
+    
+    public int getBreakScore(Player player) {
+        ScoreboardManager scoreboardManager = Bukkit.getScoreboardManager();
+        Scoreboard scoreboard = scoreboardManager.getMainScoreboard();
+
+        Objective objective = scoreboard.getObjective("break");
+
+        Score score = objective.getScore(player.getName());
+        return score.getScore();
+    }
+    
     @EventHandler
     public void onBlockBreak(BlockBreakEvent event) {
         Player player = event.getPlayer();
-        increaseScore(player, 1);
+        // TODO : 壊したブロックの判定を追加する
+        increaseBreakScore(player, 1);
         if (event.getBlock().getType() == Material.STONE || event.getBlock().getType() == Material.DEEPSLATE) {
             // 1%の確率で化石をドロップする
             int random = new Random().nextInt(100);
