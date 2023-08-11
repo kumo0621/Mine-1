@@ -161,13 +161,13 @@ public class Mine extends JavaPlugin implements Listener {
                 // アイテムの取得結果をランダムで決定
                 int random = new Random().nextInt(50);
                 if (random == 0) {
-                    player.getInventory().addItem(new ItemStack(Material.DIAMOND, 100));
+                    player.getInventory().addItem(new ItemStack(Material.DIAMOND, 40));
                     player.sendMessage("古代の残骸を鑑定してダイヤモンドをゲットしました。");
                 } else if (random == 1) {
                     player.getInventory().addItem(new ItemStack(Material.COAL, 20));
                     player.sendMessage("古代の残骸を鑑定して石炭をゲットしました。");
                 } else if (random == 2) {
-                    player.getInventory().addItem(new ItemStack(Material.IRON_INGOT, 64));
+                    player.getInventory().addItem(new ItemStack(Material.IRON_INGOT, 24));
                     player.sendMessage("古代の残骸を鑑定して鉄インゴットをゲットしました。");
                 } else {
                     player.sendMessage("古代の残骸を鑑定しましたが、何も起こりませんでした。");

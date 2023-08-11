@@ -9,10 +9,6 @@ import org.bukkit.inventory.ItemStack;
 
 public class EnchantableSeitiItem extends SeitiItem {
 
-    @Getter
-    private final Enchantment enchantment;
-    @Getter
-    private final int enchantLevel;
 
     /**
      * 　固有アイテムの型を作成する
@@ -22,27 +18,21 @@ public class EnchantableSeitiItem extends SeitiItem {
      * @param internalName    作りたい固有アイテムの内部的な名前<br>
      *                        召喚コマンドで使われるので必ず半角英数字にしてスペースの代わりに_を使うこと
      * @param customModelData 固有アイテムにセットするカスタムモデルデータ
-     * @param enchantment     エンチャ
-     * @param enchantLevel    エンチャレベル
      */
-    public EnchantableSeitiItem(TextComponent name, Material material, String internalName, int customModelData, Enchantment enchantment, int enchantLevel) {
+    public EnchantableSeitiItem(TextComponent name, Material material, String internalName, int customModelData) {
         super(name, material, internalName, customModelData);
-        this.enchantment = enchantment;
-        this.enchantLevel = enchantLevel;
         itemStackTemplate = createItem();
     }
 
-    @Override
-    protected ItemStack createItem() {
-        if (enchantment == null)
-            return null;
 
+    private ItemStack createItem() {
         return new ItemCreator(getMaterial())
                 .setName(getName())
                 .setStrNBT("SeitiID", getInternalName())
                 .setCustomModelData(getCustomModelData())
-                .addEnchantment(enchantment, enchantLevel)
                 .setUnbreakable(true)
                 .create();
     }
+
+
 }

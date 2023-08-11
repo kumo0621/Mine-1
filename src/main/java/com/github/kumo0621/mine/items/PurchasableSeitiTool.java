@@ -21,8 +21,8 @@ public class PurchasableSeitiTool extends SeitiTool implements IPurchasableItem 
      * @param enchantment     エンチャ
      * @param enchantLevel    エンチャレベル
      */
-    public PurchasableSeitiTool(TextComponent name, Material material, String internalName, int customModelData, Enchantment enchantment, int enchantLevel, ToolType toolType, int price) {
-        super(name, material, internalName, customModelData, enchantment, enchantLevel, toolType);
+    public PurchasableSeitiTool(TextComponent name, Material material, String internalName, int customModelData, ToolType toolType, int price) {
+        super(name, material, internalName, customModelData,toolType);
         this.price = price;
     }
 }

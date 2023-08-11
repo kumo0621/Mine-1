@@ -18,11 +18,9 @@ public class SeitiTool extends EnchantableSeitiItem {
      * @param internalName    作りたい固有アイテムの内部的な名前<br>
      *                        召喚コマンドで使われるので必ず半角英数字にしてスペースの代わりに_を使うこと
      * @param customModelData 固有アイテムにセットするカスタムモデルデータ
-     * @param enchantment     エンチャ
-     * @param enchantLevel    エンチャレベル
      */
-    public SeitiTool(TextComponent name, Material material, String internalName, int customModelData, Enchantment enchantment, int enchantLevel, ToolType toolType) {
-        super(name, material, internalName, customModelData, enchantment, enchantLevel);
+    public SeitiTool(TextComponent name, Material material, String internalName, int customModelData, ToolType toolType) {
+        super(name, material, internalName, customModelData);
         this.toolType = toolType;
     }
 

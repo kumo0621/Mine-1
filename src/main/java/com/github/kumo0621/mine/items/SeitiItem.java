@@ -5,6 +5,7 @@ import lombok.Data;
 import net.kyori.adventure.text.TextComponent;
 import org.bukkit.Material;
 import org.bukkit.command.CommandSender;
+import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
@@ -65,7 +66,7 @@ public class SeitiItem implements ISeitiItem {
      *
      * @return 作られたアイテムの型の実体
      */
-    protected ItemStack createItem() {
+    private ItemStack createItem() {
         return new ItemCreator(material)
                 .setName(name)
                 .setStrNBT("SeitiID", internalName)
@@ -94,5 +95,16 @@ public class SeitiItem implements ISeitiItem {
             return false;
 
         return ID.equals(internalName);
+    }
+    /**
+     * エンチャントを追加
+     *
+     * @param enchantment  エンチャ
+     * @param enchantLevel エンチャレベル
+     * @return this
+     */
+    public SeitiItem addEnchantment(Enchantment enchantment, int enchantLevel) {
+        itemStackTemplate.addEnchantment(enchantment, enchantLevel);
+        return this;
     }
 }

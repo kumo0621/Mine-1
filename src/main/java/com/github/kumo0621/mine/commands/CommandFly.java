@@ -28,8 +28,8 @@ public class CommandFly extends CommandBase {
         Player player = (Player) sender;
         int money = Mine.getInstance().getMoneyHandler().getMoney(player);
 
-        if (money < 100) {
-            sender.sendMessage("お金が足りません。100G必要です。");
+        if (money < 1000) {
+            sender.sendMessage("お金が足りません。1000G必要です。");
             return true;
         }
         if (player.getGameMode() == GameMode.CREATIVE) {
@@ -41,7 +41,7 @@ public class CommandFly extends CommandBase {
             return true;
         }
 
-        int result = money - 100;
+        int result = money - 1000;
         Mine.getInstance().getMoneyHandler().setMoney(player, result);
 
         // 空を飛ぶ許可をトグル

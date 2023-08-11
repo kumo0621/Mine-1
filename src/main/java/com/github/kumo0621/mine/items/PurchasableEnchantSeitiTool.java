@@ -5,7 +5,7 @@ import net.kyori.adventure.text.TextComponent;
 import org.bukkit.Material;
 import org.bukkit.enchantments.Enchantment;
 
-public class PurchasableSeitiTool extends SeitiTool implements IPurchasableItem {
+public class PurchasableEnchantSeitiTool extends SeitiTool implements IPurchasableItem {
 
     @Getter
     private final int price;
@@ -18,11 +18,9 @@ public class PurchasableSeitiTool extends SeitiTool implements IPurchasableItem 
      * @param internalName    作りたい固有アイテムの内部的な名前<br>
      *                        召喚コマンドで使われるので必ず半角英数字にしてスペースの代わりに_を使うこと
      * @param customModelData 固有アイテムにセットするカスタムモデルデータ
-     * @param enchantment     エンチャ
-     * @param enchantLevel    エンチャレベル
      */
-    public PurchasableSeitiTool(TextComponent name, Material material, String internalName, int customModelData, Enchantment enchantment, int enchantLevel, ToolType toolType, int price) {
-        super(name, material, internalName, customModelData, enchantment, enchantLevel, toolType);
+    public PurchasableEnchantSeitiTool(TextComponent name, Material material, String internalName, int customModelData,ToolType toolType, int price) {
+        super(name, material, internalName, customModelData,toolType);
         this.price = price;
     }
 }

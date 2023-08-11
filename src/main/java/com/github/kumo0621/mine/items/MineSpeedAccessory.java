@@ -12,7 +12,7 @@ public class MineSpeedAccessory extends PurchasableSeitiItem implements IBuffIte
      * 　固有アイテムの型を作成する
      */
     public MineSpeedAccessory() {
-        super(Component.text("採掘速度上昇アクセサリー"), Material.IRON_PICKAXE, "accessory_mine", 0, 500000);
+        super(Component.text("採掘速度上昇アクセサリー"), Material.IRON_PICKAXE, "accessory_mine", 2, 500000);
     }
 
     @Override

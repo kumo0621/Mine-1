@@ -12,7 +12,7 @@ public class MoveSpeedAccessory extends PurchasableSeitiItem implements IBuffIte
      * 　固有アイテムの型を作成する
      */
     public MoveSpeedAccessory() {
-        super(Component.text("移動速度上昇アクセサリー"), Material.IRON_PICKAXE, "accessory_speed", 0, 500000);
+        super(Component.text("移動速度上昇アクセサリー"), Material.IRON_PICKAXE, "accessory_speed", 1, 500000);
     }
 
     @Override

@@ -11,7 +11,7 @@ public class TNTSummoner extends PurchasableSeitiItem implements IRightClickHand
      * 　固有アイテムの型を作成する
      */
     public TNTSummoner() {
-        super(Component.text("TNTを右クリックで召喚"), Material.PAPER, "tnt", 0, 100);
+        super(Component.text("TNTを右クリックで召喚"), Material.PAPER, "tnt", 0, 1000);
     }
 
     @Override
