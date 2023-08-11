@@ -22,7 +22,15 @@ public enum SeitiItems {
     VERY_KING_PICKAXE(new PurchasableSeitiTool(Component.text("すごい帝王のツルハシ"), Material.DIAMOND_PICKAXE, "very_king_pickaxe", 8, PurchasableSeitiTool.ToolType.PICKAXE, 80000).addEnchantment(Enchantment.DIG_SPEED, 12)),
     HADES_PICKAXE(new PurchasableSeitiTool(Component.text("冥王のツルハシ"), Material.DIAMOND_PICKAXE, "hades_pickaxe", 9, PurchasableSeitiTool.ToolType.PICKAXE, 100000).addEnchantment(Enchantment.DIG_SPEED, 15)),
     LUCKY_PICKAXE(new PurchasableSeitiTool(Component.text("爆裂ツルハシ"), Material.IRON_PICKAXE, "lucky_pickaxe", 10, PurchasableSeitiTool.ToolType.PICKAXE, 1000000).addEnchantment(Enchantment.DIG_SPEED, 20)),
-    RARE_PICKAXE(new SeitiTool(Component.text("レアツルハシ"), Material.DIAMOND_PICKAXE, "rare_pickaxe", 0, SeitiTool.ToolType.PICKAXE).addEnchantment(Enchantment.DIG_SPEED, 20)),
+    SILK_TOUCH_PICKAXE(new PurchasableSeitiTool(Component.text("シルクツルハシ"), Material.DIAMOND_PICKAXE, "SILK_TOUCH_pickaxe", 11, PurchasableSeitiTool.ToolType.PICKAXE, 2000000).addEnchantment(Enchantment.DIG_SPEED, 5).addEnchantment(Enchantment.SILK_TOUCH, 1)),
+    SILK_TOUCH2_PICKAXE(new PurchasableSeitiTool(Component.text("シルクレベル2ツルハシ"), Material.DIAMOND_PICKAXE, "SILK_TOUCH2_pickaxe", 12, PurchasableSeitiTool.ToolType.PICKAXE, 3000000).addEnchantment(Enchantment.DIG_SPEED, 8).addEnchantment(Enchantment.SILK_TOUCH, 1)),
+    SILK_TOUCH3_PICKAXE(new PurchasableSeitiTool(Component.text("シルクレベル3ツルハシ"), Material.DIAMOND_PICKAXE, "SILK_TOUCH3_pickaxe", 13, PurchasableSeitiTool.ToolType.PICKAXE, 4000000).addEnchantment(Enchantment.DIG_SPEED, 12).addEnchantment(Enchantment.SILK_TOUCH, 1)),
+    lucky2_PICKAXE(new PurchasableSeitiTool(Component.text("ラッキーツルハシ"), Material.DIAMOND_PICKAXE, "lucky_pickaxe", 14, PurchasableSeitiTool.ToolType.PICKAXE, 5000000).addEnchantment(Enchantment.DIG_SPEED, 5).addEnchantment(Enchantment.LOOT_BONUS_BLOCKS, 1)),
+    lucky3_PICKAXE(new PurchasableSeitiTool(Component.text("ラッキーレベル2ツルハシ"), Material.DIAMOND_PICKAXE, "lucky2_pickaxe", 15, PurchasableSeitiTool.ToolType.PICKAXE, 6000000).addEnchantment(Enchantment.DIG_SPEED, 8).addEnchantment(Enchantment.LOOT_BONUS_BLOCKS, 2)),
+    lucky4_PICKAXE(new PurchasableSeitiTool(Component.text("ラッキーレベル3ツルハシ"), Material.DIAMOND_PICKAXE, "lucky3_pickaxe", 16, PurchasableSeitiTool.ToolType.PICKAXE, 8000000).addEnchantment(Enchantment.DIG_SPEED, 12).addEnchantment(Enchantment.LOOT_BONUS_BLOCKS, 3)),
+    lucky_SILK_PICKAXE(new PurchasableSeitiTool(Component.text("ラッキーシルクツルハシ"), Material.DIAMOND_PICKAXE, "lucky_SILK_pickaxe", 17, PurchasableSeitiTool.ToolType.PICKAXE, 9000000).addEnchantment(Enchantment.DIG_SPEED, 12).addEnchantment(Enchantment.LOOT_BONUS_BLOCKS, 1).addEnchantment(Enchantment.SILK_TOUCH, 1)),
+    lucky_SILK2_PICKAXE(new PurchasableSeitiTool(Component.text("ラッキーシルク魔界ツルハシ"), Material.DIAMOND_PICKAXE, "lucky_SILK2_pickaxe", 18, PurchasableSeitiTool.ToolType.PICKAXE, 10000000).addEnchantment(Enchantment.DIG_SPEED, 15).addEnchantment(Enchantment.LOOT_BONUS_BLOCKS, 3).addEnchantment(Enchantment.SILK_TOUCH, 1)),
+
     SILK_TOUCH(new EnchantableBookSeitiItem(Component.text("シルクタッチ"), Material.ENCHANTED_BOOK, "シルクタッチ", 0, SeitiTool.ToolType.PICKAXE, 10000).addEnchantment(Enchantment.SILK_TOUCH, 0)),
 
     BEGINNER_SHOVEL(new SeitiTool(Component.text("初心者のシャベル"), Material.DIAMOND_SHOVEL, "beginner_shovel", 1, SeitiTool.ToolType.SHOVEL).addEnchantment(Enchantment.DIG_SPEED, 0)),
@@ -42,6 +50,7 @@ public enum SeitiItems {
 
     ACCESSORY_SPEED(new MoveSpeedAccessory()),
     ACCESSORY_MINE(new MineSpeedAccessory()),
+    Fire_MINE(new FireAccessory()),
     STEAK(new PurchasableSeitiItem(Component.text("飯"), Material.COOKED_BEEF, "steak", 0, 1)),
     COAL(new PurchasableSeitiItem(Component.text("燃料"), Material.COAL, "steak", 0, 16)),
     SPONGE(new PurchasableSeitiItem(Component.text("スポンジ"), Material.SPONGE, "sponge", 0, 1)),

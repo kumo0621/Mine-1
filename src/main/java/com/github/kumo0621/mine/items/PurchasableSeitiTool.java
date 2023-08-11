@@ -18,8 +18,6 @@ public class PurchasableSeitiTool extends SeitiTool implements IPurchasableItem 
      * @param internalName    作りたい固有アイテムの内部的な名前<br>
      *                        召喚コマンドで使われるので必ず半角英数字にしてスペースの代わりに_を使うこと
      * @param customModelData 固有アイテムにセットするカスタムモデルデータ
-     * @param enchantment     エンチャ
-     * @param enchantLevel    エンチャレベル
      */
     public PurchasableSeitiTool(TextComponent name, Material material, String internalName, int customModelData, ToolType toolType, int price) {
         super(name, material, internalName, customModelData,toolType);

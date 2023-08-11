@@ -31,7 +31,7 @@ public class SeitiItem implements ISeitiItem {
      * アイテムを作製した時これがまず渡されるので必要に応じてインスタンスの固有データを流し込む<br>
      * 注意：絶対に変更してはいけないので必ずクローンして使うこと
      */
-    protected ItemStack itemStackTemplate;
+    protected ItemCreator itemStackTemplate;
 
     /**
      * 主に召喚コマンドで用いられる内部的なアイテム名<br>
@@ -66,23 +66,22 @@ public class SeitiItem implements ISeitiItem {
      *
      * @return 作られたアイテムの型の実体
      */
-    private ItemStack createItem() {
+    private ItemCreator createItem() {
         return new ItemCreator(material)
                 .setName(name)
                 .setStrNBT("SeitiID", internalName)
                 .setCustomModelData(customModelData)
-                .setUnbreakable(false)
-                .create();
+                .setUnbreakable(false);
     }
 
     public void onGiveCommand(CommandSender sender, String[] argments) {
         Player player = (Player) sender;
-        player.getInventory().addItem(itemStackTemplate);
+        player.getInventory().addItem(getItemStack());
     }
 
     @Nonnull
     public ItemStack getItemStack() {
-        return itemStackTemplate.clone();
+        return itemStackTemplate.create();
     }
 
     public boolean isSimilar(@Nullable ItemStack itemStack) {

@@ -26,12 +26,11 @@ public class EnchantableBookSeitiItem extends SeitiItem implements IPurchasableI
         this.price = price;
     }
 
-    private ItemStack createItem() {
+    private ItemCreator createItem() {
         return new ItemCreator(getMaterial())
                 .setName(getName())
                 .setStrNBT("SeitiID", getInternalName())
                 .setCustomModelData(getCustomModelData())
-                .setUnbreakable(true)
-                .create();
+                .setUnbreakable(true);
     }
 }

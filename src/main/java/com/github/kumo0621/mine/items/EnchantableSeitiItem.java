@@ -25,13 +25,12 @@ public class EnchantableSeitiItem extends SeitiItem {
     }
 
 
-    private ItemStack createItem() {
+    private ItemCreator createItem() {
         return new ItemCreator(getMaterial())
                 .setName(getName())
                 .setStrNBT("SeitiID", getInternalName())
                 .setCustomModelData(getCustomModelData())
-                .setUnbreakable(true)
-                .create();
+                .setUnbreakable(true);
     }
 
 
