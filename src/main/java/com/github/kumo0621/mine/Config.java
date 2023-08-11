@@ -33,11 +33,9 @@ public class Config {
         getData().getJoinedPlayerList().clear();
         strList.forEach(s -> getData().getJoinedPlayerList().add(UUID.fromString(s)));
 
-        getData().getJoinedPlayerList().forEach(uuid -> {
-            getData().getMoneyMap().put(uuid, config.getInt(moneyStr + uuid.toString()));
-        });
+        getData().getJoinedPlayerList().forEach(uuid -> getData().getMoneyMap().put(uuid, config.getInt(moneyStr + uuid.toString())));
 
-        getData().setHome(config.getLocation(homeStr));
+        getData().setSpawn(config.getLocation(homeStr));
     }
 
     /**
@@ -55,7 +53,7 @@ public class Config {
 
         getData().getMoneyMap().forEach((uuid, integer) -> config.set(moneyStr + uuid.toString(), integer));
 
-        config.set(homeStr, getData().getHome());
+        config.set(homeStr, getData().getSpawn());
 
         plugin.saveConfig();
     }

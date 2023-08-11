@@ -16,7 +16,7 @@ import java.util.List;
 
 public class CommandSetMoney extends CommandBase implements Listener {
 
-    private static final String commandName = "set";
+    private static final String commandName = "setmoney";
 
     public CommandSetMoney() {
         super(commandName, 2, 2, true);
@@ -33,7 +33,7 @@ public class CommandSetMoney extends CommandBase implements Listener {
         int money;
         try {
             money = Integer.parseInt(arguments[1]);
-        } catch (NumberFormatException e) {
+        } catch (NumberFormatException numberFormatException) {
             sender.sendMessage("数値を指定してください");
             return true;
         }
@@ -45,15 +45,15 @@ public class CommandSetMoney extends CommandBase implements Listener {
     }
 
     @EventHandler
-    public void AsyncTabCompleteEvent(AsyncTabCompleteEvent e) {
-        if (e.getBuffer().startsWith("/" + commandName + " ")) {
+    public void AsyncTabCompleteEvent(AsyncTabCompleteEvent event) {
+        if (event.getBuffer().startsWith("/" + commandName + " ")) {
             List<String> suggestions = new ArrayList<>();
-            String pureBuffer = e.getBuffer().replace("/" + commandName + " ", "");
+            String pureBuffer = event.getBuffer().replace("/" + commandName + " ", "");
             Bukkit.getOnlinePlayers().forEach(s -> {
                 if (s.getName().startsWith(pureBuffer))
                     suggestions.add(s.getName());
             });
-            e.setCompletions(suggestions);
+            event.setCompletions(suggestions);
         }
     }
 }

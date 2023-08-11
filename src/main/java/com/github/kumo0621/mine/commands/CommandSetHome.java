@@ -18,10 +18,11 @@ public class CommandSetHome extends CommandBase {
 
     @Override
     public boolean onCommand(@NotNull CommandSender sender, @Nullable String[] arguments) {
-        Player player = (Player) sender;
-        Location targetLocation = player.getLocation(); // B地点の座標を指定
+       Player player = (Player) sender;
+       /* Location targetLocation = player.getLocation(); // B地点の座標を指定
         Mine.getInstance().getData().setHome(targetLocation);
-        player.sendMessage("homeを現在の座標で設定しました");
+        player.sendMessage("homeを現在の座標で設定しました");*/
+        player.sendMessage("TBD");
         return true;
     }
 }

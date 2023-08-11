@@ -7,7 +7,7 @@ import java.util.*;
 @lombok.Data
 public class Data {
 
-    private Location home;
+    private Location spawn;
 
     private final List<UUID> joinedPlayerList = new ArrayList<>();
 
