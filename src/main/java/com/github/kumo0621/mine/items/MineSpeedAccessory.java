@@ -17,7 +17,7 @@ public class MineSpeedAccessory extends PurchasableSeitiItem implements IBuffIte
 
     @Override
     public void applyBuff(Player player) {
-        PotionEffect hasteEffect = new PotionEffect(PotionEffectType.FAST_DIGGING, buffTime, 2);
+        PotionEffect hasteEffect = new PotionEffect(PotionEffectType.FAST_DIGGING, buffTime, 10);
         player.addPotionEffect(hasteEffect);
     }
 }

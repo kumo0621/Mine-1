@@ -17,7 +17,7 @@ public class MoveSpeedAccessory extends PurchasableSeitiItem implements IBuffIte
 
     @Override
     public void applyBuff(Player player) {
-        PotionEffect hasteEffect = new PotionEffect(PotionEffectType.SPEED, buffTime, 2);
+        PotionEffect hasteEffect = new PotionEffect(PotionEffectType.SPEED, buffTime, 10);
         player.addPotionEffect(hasteEffect);
     }
 }
