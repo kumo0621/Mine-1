@@ -179,10 +179,15 @@ public class Mine extends JavaPlugin implements Listener {
     }
 
     @EventHandler
-    public void onPlayerPickUp(PlayerPickupItemEvent event) {
-        ISeitiItem item = SeitiItems.toSeitiItem(event.getItem().getItemStack());
-        if (item instanceof IBuffItem)
-            ((IBuffItem) item).applyBuff(event.getPlayer());
+    public void onAccessoryClick(PlayerInteractEvent event) {
+        if (event.getAction().toString().contains("RIGHT_CLICK")) {
+            if (event.getItem() != null) {
+                ISeitiItem item = SeitiItems.toSeitiItem(event.getItem());
+                if (item instanceof IBuffItem) {
+                    ((IBuffItem) item).applyBuff(event.getPlayer());
+                }
+            }
+        }
     }
 
     public void applyBuffToPlayer(Player onlinePlayer) {
@@ -241,30 +246,5 @@ public class Mine extends JavaPlugin implements Listener {
         int money = Mine.getInstance().data.getMoneyMap().get(player.getUniqueId());
         player.sendActionBar(Component.text(ChatColor.AQUA + "所持金: " + money + "G   " + ChatColor.GREEN + "採掘量: " + breakScore));
 
-    }
-    @EventHandler
-    public void onPlayerPickupItem(PlayerPickupItemEvent event) {
-        Player player = event.getPlayer();
-        Inventory inventory = player.getInventory();
-        ItemStack pickedItem = event.getItem().getItemStack();
-
-        // アイテムが鉄鉱石、金鉱石、銅鉱石かチェック
-        if (pickedItem != null) {
-            Material itemType = pickedItem.getType();
-
-            if (itemType == Material.IRON_ORE) {
-                inventory.removeItem(pickedItem);
-                inventory.addItem(new ItemStack(Material.IRON_INGOT, 1));
-                player.sendMessage("鉄鉱石が精錬されて鉄インゴットが生成されました！");
-            } else if (itemType == Material.GOLD_ORE) {
-                inventory.removeItem(pickedItem);
-                inventory.addItem(new ItemStack(Material.GOLD_INGOT, 1));
-                player.sendMessage("金鉱石が精錬されて金インゴットが生成されました！");
-            } else if (itemType == Material.COPPER_ORE) {
-                inventory.removeItem(pickedItem);
-                inventory.addItem(new ItemStack(Material.COPPER_INGOT, 1));
-                player.sendMessage("銅鉱石が精錬されて銅インゴットが生成されました！");
-            }
-        }
     }
 }

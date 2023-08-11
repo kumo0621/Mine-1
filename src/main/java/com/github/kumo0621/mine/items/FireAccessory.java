@@ -14,9 +14,8 @@ public class FireAccessory extends PurchasableSeitiItem implements IBuffItem {
      * 　固有アイテムの型を作成する
      */
     public FireAccessory() {
-        super(Component.text("精錬のアクセサリー"), Material.IRON_PICKAXE, "Fire_speed", 3, 500000);
+        super(Component.text("精錬のアクセサリー"), Material.GRAY_DYE, "Fire_speed", 3, 500000);
     }
-
     @Override
     public void applyBuff(Player player) {
         Inventory inventory = player.getInventory();
@@ -24,29 +23,53 @@ public class FireAccessory extends PurchasableSeitiItem implements IBuffItem {
         // インベントリ内のアイテムを取得
         ItemStack[] items = inventory.getContents();
 
-        for (ItemStack item : items) {
+        for (int i = 0; i < items.length; i++) {
+            ItemStack item = items[i];
             if (item != null) {
                 Material itemType = item.getType();
 
                 // 鉄鉱石を精錬
-                if (itemType == Material.IRON_ORE) {
-                    inventory.removeItem(item);
-                    inventory.addItem(new ItemStack(Material.IRON_INGOT, 1));
-                    player.sendMessage("鉄鉱石が精錬されて鉄インゴットが生成されました！");
+                if (itemType == Material.IRON_ORE||itemType == Material.DEEPSLATE_IRON_ORE) {
+                    int itemCount = item.getAmount();
+                    inventory.setItem(i, null); // 元のアイテムを削除
+
+                    int ingotCount = itemCount * 1; // 1つの鉄鉱石から1つの鉄インゴットを生成
+                    while (ingotCount > 0) {
+                        int stackSize = Math.min(ingotCount, Material.IRON_INGOT.getMaxStackSize());
+                        ItemStack ingotStack = new ItemStack(Material.IRON_INGOT, stackSize);
+                        ingotCount -= stackSize;
+                        inventory.addItem(ingotStack);
+                    }
                 }
                 // 金鉱石を精錬
-                else if (itemType == Material.GOLD_ORE) {
-                    inventory.removeItem(item);
-                    inventory.addItem(new ItemStack(Material.GOLD_INGOT, 1));
-                    player.sendMessage("金鉱石が精錬されて金インゴットが生成されました！");
+                else if (itemType == Material.GOLD_ORE||itemType == Material.DEEPSLATE_GOLD_ORE) {
+                    int itemCount = item.getAmount();
+                    inventory.setItem(i, null); // 元のアイテムを削除
+
+                    int ingotCount = itemCount * 1; // 1つの金鉱石から1つの金インゴットを生成
+                    while (ingotCount > 0) {
+                        int stackSize = Math.min(ingotCount, Material.GOLD_INGOT.getMaxStackSize());
+                        ItemStack ingotStack = new ItemStack(Material.GOLD_INGOT, stackSize);
+                        ingotCount -= stackSize;
+                        inventory.addItem(ingotStack);
+                    }
                 }
                 // 銅鉱石を精錬
-                else if (itemType == Material.COPPER_ORE) {
-                    inventory.removeItem(item);
-                    inventory.addItem(new ItemStack(Material.COPPER_INGOT, 1));
-                    player.sendMessage("銅鉱石が精錬されて銅インゴットが生成されました！");
+                else if (itemType == Material.COPPER_ORE||itemType == Material.DEEPSLATE_COPPER_ORE) {
+                    int itemCount = item.getAmount();
+                    inventory.setItem(i, null); // 元のアイテムを削除
+
+                    int ingotCount = itemCount * 1; // 1つの銅鉱石から1つの銅インゴットを生成
+                    while (ingotCount > 0) {
+                        int stackSize = Math.min(ingotCount, Material.COPPER_INGOT.getMaxStackSize());
+                        ItemStack ingotStack = new ItemStack(Material.COPPER_INGOT, stackSize);
+                        ingotCount -= stackSize;
+                        inventory.addItem(ingotStack);
+                    }
                 }
+                // 他の鉱石に対する処理も同様に追加してください
             }
         }
     }
+
 }
