@@ -7,6 +7,7 @@ import org.bukkit.entity.EntityType;
 import org.bukkit.event.player.PlayerInteractEvent;
 
 public class TNTSummoner extends PurchasableSeitiItem implements IRightClickHandler {
+    
     /**
      * 　固有アイテムの型を作成する
      */

@@ -1,8 +1,6 @@
 package com.github.kumo0621.mine.items;
 
 import net.kyori.adventure.text.Component;
-import net.kyori.adventure.text.format.TextColor;
-import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.inventory.ItemStack;
@@ -64,7 +62,6 @@ public enum SeitiItems {
     AXEMENU(new SeitiItem(Component.text("§fオノ強化メニュー"), Material.OAK_LOG, "axemenu", 0)),
     MISCMENU(new SeitiItem(Component.text("§f雑貨メニュー"), Material.ANVIL, "miscmenu", 0)),
     BOOKMENU(new SeitiItem(Component.text("§f本メニュー"), Material.ENCHANTED_BOOK, "bookmenu", 0));
-
 
 
     private final ISeitiItem seitiItem;

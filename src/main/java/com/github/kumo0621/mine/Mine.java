@@ -126,7 +126,8 @@ public class Mine extends JavaPlugin implements Listener {
                     , Material.BROWN_WOOL, Material.GREEN_WOOL, Material.RED_WOOL, Material.BLACK_WOOL, Material.WHITE_BED, Material.ORANGE_BED
                     , Material.MAGENTA_BED, Material.LIGHT_BLUE_BED, Material.YELLOW_BED, Material.LIME_BED, Material.PINK_BED
                     , Material.GRAY_BED, Material.LIGHT_GRAY_BED, Material.CYAN_BED, Material.PURPLE_BED, Material.BLUE_BED
-                    , Material.BROWN_BED, Material.GREEN_BED, Material.RED_BED, Material.BLACK_BED);
+                    , Material.BROWN_BED, Material.GREEN_BED, Material.RED_BED, Material.BLACK_BED, Material.SPONGE
+                    , Material.WET_SPONGE, Material.AIR, Material.WATER, Material.LAVA);
 
     public Mine() {
         instance = this;
@@ -159,7 +160,7 @@ public class Mine extends JavaPlugin implements Listener {
             public void run() {
                 seitiConfig.saveConfig();
             }
-        }.runTaskTimer(this, 0, 1200);//毎分configを保存
+        }.runTaskTimer(this, 0, 1200); //毎分configを保存
 
         new BukkitRunnable() {
 
@@ -220,10 +221,8 @@ public class Mine extends JavaPlugin implements Listener {
         Player player = event.getPlayer();
         Block block = event.getClickedBlock();
 
-        if (event.getHand() == EquipmentSlot.OFF_HAND)
-            return;
-        if (event.getAction().isLeftClick())
-            return;
+        if (event.getHand() == EquipmentSlot.OFF_HAND) return;
+        if (event.getAction().isLeftClick()) return;
 
         if (block != null && block.getType() == Material.CHEST) {
             event.setCancelled(true);
@@ -248,18 +247,18 @@ public class Mine extends JavaPlugin implements Listener {
                 int random = new Random().nextInt(50);
                 if (random == 0) {
                     player.getInventory().addItem(new ItemStack(Material.DIAMOND, 40));
-                    player.sendMessage("古代の残骸を鑑定してダイヤモンドをゲットしました。");
+                    player.sendMessage("古代の残骸を鑑定してダイヤモンドをゲットしました");
                 } else if (random == 1) {
                     player.getInventory().addItem(new ItemStack(Material.COAL, 20));
-                    player.sendMessage("古代の残骸を鑑定して石炭をゲットしました。");
+                    player.sendMessage("古代の残骸を鑑定して石炭をゲットしました");
                 } else if (random == 2) {
                     player.getInventory().addItem(new ItemStack(Material.IRON_INGOT, 24));
-                    player.sendMessage("古代の残骸を鑑定して鉄インゴットをゲットしました。");
+                    player.sendMessage("古代の残骸を鑑定して鉄インゴットをゲットしました");
                 } else {
-                    player.sendMessage("古代の残骸を鑑定しましたが、何も起こりませんでした。");
+                    player.sendMessage("古代の残骸を鑑定しましたが何も見つかりませんでした");
                 }
             } else {
-                player.sendMessage("古代の残骸を持っていません。");
+                player.sendMessage("古代の残骸を持っていません");
             }
         }
     }
@@ -290,7 +289,6 @@ public class Mine extends JavaPlugin implements Listener {
         }
     }
 
-
     @EventHandler
     public void onBlockBreak(BlockBreakEvent event) {
         Player player = event.getPlayer();
@@ -302,7 +300,8 @@ public class Mine extends JavaPlugin implements Listener {
         // 上から掘らなかった場合はキャンセルしてリターンする
         // 掘ろうとしたブロックとワールドの一番上のブロックを比較して、同じだった場合は掘れるようにしている
         if (!allowMiningBlockList.contains(blockType)) {
-            if (!breakBreak.equals(breakBreak.getWorld().getHighestBlockAt(breakBreak.getLocation()))) {
+            Material block = breakBreak.getLocation().add(0, 2, 0).getBlock().getType();
+            if (!allowMiningBlockList.contains(block)) {
                 event.setCancelled(true);
                 return;
             }

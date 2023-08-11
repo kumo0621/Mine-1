@@ -42,7 +42,7 @@ public class Config {
      * データクラスの中身をコンフィグにセーブする
      */
     public void saveConfig() {
-        resetConfig();//古いデータが混在しないように一旦コンフィグを消す
+        resetConfig(); //古いデータが混在しないように一旦コンフィグを消す
 
         JavaPlugin plugin = Mine.getInstance();
         FileConfiguration config = plugin.getConfig();

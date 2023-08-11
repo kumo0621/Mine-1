@@ -1,13 +1,13 @@
 package com.github.kumo0621.mine;
 
-import com.github.kumo0621.mine.items.*;
+import com.github.kumo0621.mine.items.EnchantableBookSeitiItem;
+import com.github.kumo0621.mine.items.PurchasableSeitiItem;
+import com.github.kumo0621.mine.items.PurchasableSeitiTool;
+import com.github.kumo0621.mine.items.SeitiItems;
 import dev.triumphteam.gui.guis.Gui;
 import dev.triumphteam.gui.guis.GuiItem;
 import dev.triumphteam.gui.guis.PaginatedGui;
 import net.kyori.adventure.text.Component;
-import net.kyori.adventure.text.format.NamedTextColor;
-import net.kyori.adventure.text.format.TextColor;
-import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 
 import java.util.Arrays;

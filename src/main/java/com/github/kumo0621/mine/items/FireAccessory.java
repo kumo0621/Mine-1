@@ -14,6 +14,7 @@ public class FireAccessory extends PurchasableSeitiItem implements IBuffItem {
     public FireAccessory() {
         super(Component.text("精錬のアクセサリー"), Material.GRAY_DYE, "Fire_speed", 3, 500000);
     }
+
     @Override
     public void applyBuff(Player player) {
         Inventory inventory = player.getInventory();
