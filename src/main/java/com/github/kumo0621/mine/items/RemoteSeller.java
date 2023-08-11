@@ -6,6 +6,7 @@ import org.bukkit.Material;
 import org.bukkit.event.player.PlayerInteractEvent;
 
 public class RemoteSeller extends PurchasableSeitiItem implements IRightClickHandler {
+
     /**
      * 　固有アイテムの型を作成する
      */

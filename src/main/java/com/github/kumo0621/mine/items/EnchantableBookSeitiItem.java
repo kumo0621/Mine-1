@@ -9,17 +9,18 @@ public class EnchantableBookSeitiItem extends SeitiItem implements IPurchasableI
 
     @Getter
     private final int price;
+
     /**
      * 　固有アイテムの型を作成する
      *
-     * @param name            作りたい固有アイテムの名前(ユーザーが読むので必ず日本語にすること)
+     * @param displayName            作りたい固有アイテムの名前(ユーザーが読むので必ず日本語にすること)
      * @param material        作りたい固有アイテムの元となるバニラアイテム
      * @param internalName    作りたい固有アイテムの内部的な名前<br>
      *                        召喚コマンドで使われるので必ず半角英数字にしてスペースの代わりに_を使うこと
      * @param customModelData 固有アイテムにセットするカスタムモデルデータ
      */
-    public EnchantableBookSeitiItem(TextComponent name, Material material, String internalName, int customModelData, SeitiTool.ToolType toolType,int price) {
-        super(name, material, internalName, customModelData);
+    public EnchantableBookSeitiItem(TextComponent displayName, Material material, String internalName, int customModelData, SeitiTool.ToolType toolType,int price) {
+        super(displayName, material, internalName, customModelData);
         itemStackTemplate = createItem();
         this.price = price;
     }
