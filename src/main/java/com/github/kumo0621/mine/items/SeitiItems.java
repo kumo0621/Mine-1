@@ -1,6 +1,8 @@
 package com.github.kumo0621.mine.items;
 
 import net.kyori.adventure.text.Component;
+import net.kyori.adventure.text.format.TextColor;
+import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.inventory.ItemStack;
@@ -59,11 +61,11 @@ public enum SeitiItems {
     SELLER(new RemoteSeller()),
     BLOCKBREAK(new AreaMiner()),
     BLOCKSET(new BlockSet()),
-    PICKAXEMENU(new SeitiItem(Component.text("ピッケル強化メニュー"), Material.STONE, "pickaxemenu", 0)),
-    SHOVELMENU(new SeitiItem(Component.text("シャベル強化メニュー"), Material.DIRT, "shovelmenu", 0)),
-    AXEMENU(new SeitiItem(Component.text("オノ強化メニュー"), Material.OAK_LOG, "axemenu", 0)),
-    MISCMENU(new SeitiItem(Component.text("雑貨メニュー"), Material.ANVIL, "miscmenu", 0)),
-    BOOKMENU(new SeitiItem(Component.text("本メニュー"), Material.ENCHANTED_BOOK, "bookmenu", 0));
+    PICKAXEMENU(new SeitiItem(Component.text("§fツルハシ強化メニュー"), Material.STONE, "pickaxemenu", 0)),
+    SHOVELMENU(new SeitiItem(Component.text("§fシャベル強化メニュー"), Material.DIRT, "shovelmenu", 0)),
+    AXEMENU(new SeitiItem(Component.text("§fオノ強化メニュー"), Material.OAK_LOG, "axemenu", 0)),
+    MISCMENU(new SeitiItem(Component.text("§f雑貨メニュー"), Material.ANVIL, "miscmenu", 0)),
+    BOOKMENU(new SeitiItem(Component.text("§f本メニュー"), Material.ENCHANTED_BOOK, "bookmenu", 0));
 
 
 

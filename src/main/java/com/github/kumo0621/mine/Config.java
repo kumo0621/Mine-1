@@ -33,9 +33,7 @@ public class Config {
         getData().getJoinedPlayerList().clear();
         strList.forEach(s -> getData().getJoinedPlayerList().add(UUID.fromString(s)));
 
-        getData().getJoinedPlayerList().forEach(uuid -> {
-            getData().getMoneyMap().put(uuid, config.getInt(moneyStr + uuid.toString()));
-        });
+        getData().getJoinedPlayerList().forEach(uuid -> getData().getMoneyMap().put(uuid, config.getInt(moneyStr + uuid.toString())));
 
         getData().setHome(config.getLocation(homeStr));
     }

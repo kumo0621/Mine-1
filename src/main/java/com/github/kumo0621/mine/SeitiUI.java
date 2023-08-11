@@ -5,6 +5,9 @@ import dev.triumphteam.gui.guis.Gui;
 import dev.triumphteam.gui.guis.GuiItem;
 import dev.triumphteam.gui.guis.PaginatedGui;
 import net.kyori.adventure.text.Component;
+import net.kyori.adventure.text.format.NamedTextColor;
+import net.kyori.adventure.text.format.TextColor;
+import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 
 import java.util.Arrays;
@@ -18,6 +21,7 @@ public class SeitiUI {
                 .pageSize(9)
                 .disableAllInteractions()
                 .create();
+
 
         GuiItem PickAxeMenu = new GuiItem(SeitiItems.PICKAXEMENU.get().getItemStack(),
                 event -> openToolMenu(player, PurchasableSeitiTool.ToolType.PICKAXE, "ツルハシ強化メニュー"));

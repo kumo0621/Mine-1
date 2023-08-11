@@ -4,8 +4,6 @@ import com.github.kumo0621.mine.ItemCreator;
 import lombok.Getter;
 import net.kyori.adventure.text.TextComponent;
 import org.bukkit.Material;
-import org.bukkit.enchantments.Enchantment;
-import org.bukkit.inventory.ItemStack;
 
 public class EnchantableBookSeitiItem extends SeitiItem implements IPurchasableItem{
 
