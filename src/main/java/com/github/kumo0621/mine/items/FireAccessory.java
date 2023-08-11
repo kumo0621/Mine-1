@@ -27,7 +27,7 @@ public class FireAccessory extends PurchasableSeitiItem implements IBuffItem {
                 Material itemType = item.getType();
 
                 // 鉄鉱石を精錬
-                if (itemType == Material.IRON_ORE||itemType == Material.DEEPSLATE_IRON_ORE) {
+                if (itemType == Material.RAW_IRON||itemType == Material.IRON_ORE||itemType == Material.DEEPSLATE_IRON_ORE) {
                     int itemCount = item.getAmount();
                     inventory.setItem(i, null); // 元のアイテムを削除
 
@@ -40,7 +40,7 @@ public class FireAccessory extends PurchasableSeitiItem implements IBuffItem {
                     }
                 }
                 // 金鉱石を精錬
-                else if (itemType == Material.GOLD_ORE||itemType == Material.DEEPSLATE_GOLD_ORE) {
+                else if (itemType == Material.RAW_GOLD||itemType == Material.GOLD_ORE||itemType == Material.DEEPSLATE_GOLD_ORE) {
                     int itemCount = item.getAmount();
                     inventory.setItem(i, null); // 元のアイテムを削除
 
@@ -53,7 +53,7 @@ public class FireAccessory extends PurchasableSeitiItem implements IBuffItem {
                     }
                 }
                 // 銅鉱石を精錬
-                else if (itemType == Material.COPPER_ORE||itemType == Material.DEEPSLATE_COPPER_ORE) {
+                else if (itemType == Material.RAW_COPPER||itemType == Material.COPPER_ORE||itemType == Material.DEEPSLATE_COPPER_ORE) {
                     int itemCount = item.getAmount();
                     inventory.setItem(i, null); // 元のアイテムを削除
 
