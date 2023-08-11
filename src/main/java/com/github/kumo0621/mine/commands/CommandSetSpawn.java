@@ -8,25 +8,25 @@ import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-public class CommandHome extends CommandBase {
+public class CommandSetSpawn extends CommandBase {
 
-    private static final String commandName = "home";
+    private static final String commandName = "setspawn";
 
-    public CommandHome() {
+    public CommandSetSpawn() {
         super(commandName, 0, 0, true);
-        setPermission("");
     }
 
     @Override
     public boolean onCommand(@NotNull CommandSender sender, @Nullable String[] arguments) {
         Player player = (Player) sender;
-        /*Location targetLocation = Mine.getInstance().getData().getHome(); // B地点の座標を指定
-        if (targetLocation == null) {
-            player.sendMessage("homeが設定されていません");
+        if (!player.isOp()) {
+            player.sendMessage("権限がありません");
             return true;
         }
-        player.teleport(targetLocation);*/
-        player.sendMessage("TBD");
+        Location targetLocation = player.getLocation(); // B地点の座標を指定
+        Mine.getInstance().getData().setSpawn(targetLocation);
+        player.sendMessage("Spawnを現在の座標で設定しました");
         return true;
     }
+
 }

@@ -52,6 +52,8 @@ public class Mine extends JavaPlugin implements Listener {
         new CommandOpenMenu();
         new CommandFly();
         new CommandTransaction();
+        new CommandSpawn();
+        new CommandSetSpawn();
 
         data = new Data();
         moneyHandler = new MoneyHandler();
@@ -203,9 +205,19 @@ public class Mine extends JavaPlugin implements Listener {
     public void onBlockBreak(BlockBreakEvent event) {
         Player player = event.getPlayer();
         Material blockType = event.getBlock().getType();
+
+        Block breakBreak = event.getBlock();
+
+        // 上から掘らなかった場合はキャンセルしてリターンする
+        if (!breakBreak.equals(breakBreak.getWorld().getHighestBlockAt(breakBreak.getLocation()))) {
+            event.setCancelled(true);
+            return;
+        }
+
         if (blockType == Material.STONE || blockType == Material.DIRT|| blockType == Material.GRASS_BLOCK|| blockType == Material.DEEPSLATE|| blockType == Material.OAK_LOG) {
             MiningScore.increaseBreakScore(player, 1);
         }
+
         if (event.getBlock().getType() == Material.STONE || event.getBlock().getType() == Material.DEEPSLATE) {
             // 1%の確率で化石をドロップする
             int random = new Random().nextInt(100);
