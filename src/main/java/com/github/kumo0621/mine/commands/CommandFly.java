@@ -29,15 +29,16 @@ public class CommandFly extends CommandBase {
         int money = Mine.getInstance().getMoneyHandler().getMoney(player);
 
         if (money < 1000) {
-            sender.sendMessage("お金が足りません。1000G必要です。");
+            sender.sendMessage("お金が足りません。1000G必要です");
             return true;
         }
         if (player.getGameMode() == GameMode.CREATIVE) {
-            player.sendMessage("クリエイティブモードでは飛行は無効です！");
+            player.sendMessage("クリエイティブモードでは飛行は無効です");
             return true;
         }
+
         if (flyingPlayersList.contains(player)) {
-            player.sendMessage("現在飛行中です！");
+            player.sendMessage("現在飛行中です");
             return true;
         }
 
@@ -54,11 +55,11 @@ public class CommandFly extends CommandBase {
                 flyingPlayersList.remove(player);
                 player.setAllowFlight(false);
                 player.setFlying(false);
-                player.sendMessage("空を飛ぶ機能が無効になりました。");
+                player.sendMessage("空を飛ぶ機能が無効になりました");
             }
         }.runTaskLater(Mine.getInstance(), 20 * 60);
 
-        player.sendMessage("空を飛べるようになりました。");
+        player.sendMessage("空を飛べるようになりました");
         return true;
     }
 }

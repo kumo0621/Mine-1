@@ -8,6 +8,7 @@ import com.github.kumo0621.mine.items.SeitiItems;
 import org.bukkit.command.CommandSender;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -26,11 +27,11 @@ public class CommandSeitiGive implements Listener {
         new CommandBase(commandName, 1, 3, true) {
 
             @Override
-            public boolean onCommand(CommandSender sender, String[] argments) {
-                ISeitiItem item = SeitiItems.commandToSeitiItem(argments[0]);
+            public boolean onCommand(@NotNull CommandSender sender, String[] arguments) {
+                ISeitiItem item = SeitiItems.commandToSeitiItem(arguments[0]);
                 if (item != null) {
-                    if (argments.length > 1) {
-                        item.onGiveCommand(sender, Arrays.copyOfRange(argments, 1, argments.length));
+                    if (arguments.length > 1) {
+                        item.onGiveCommand(sender, Arrays.copyOfRange(arguments, 1, arguments.length));
                     } else {
                         item.onGiveCommand(sender, null);
                     }
@@ -49,11 +50,11 @@ public class CommandSeitiGive implements Listener {
     }
 
     @EventHandler
-    public void AsyncTabCompleteEvent(AsyncTabCompleteEvent e) {
-        if (e.getBuffer().startsWith("/" + commandName + "")) {
+    public void AsyncTabCompleteEvent(AsyncTabCompleteEvent event) {
+        if (event.getBuffer().startsWith("/" + commandName + "")) {
             List<String> suggestions = new ArrayList<>();
             Arrays.stream(SeitiItems.values()).forEach(v -> suggestions.add(v.get().getInternalName()));
-            e.setCompletions(suggestions);
+            event.setCompletions(suggestions);
         }
     }
 }

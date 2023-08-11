@@ -26,7 +26,7 @@ public class CommandHome extends CommandBase {
             return true;
         }
         player.teleport(targetLocation);*/
-        player.sendMessage("TBD");
+        player.sendMessage("spawnコマンドを使用してください");
         return true;
     }
 }
