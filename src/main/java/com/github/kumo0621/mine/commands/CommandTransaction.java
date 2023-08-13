@@ -66,7 +66,7 @@ public class CommandTransaction extends CommandBase {
         Mine.getInstance().getMoneyHandler().setMoney(targetPlayer, targetPlayerMoney);
 
         sender.sendMessage(((Player) sender).getPlayer().getName() + "さんは、" + targetPlayer.getName() + "さんに" + sendAmount + "送金しました");
-        targetPlayer.sendMessage(player.getName() + "さんから、" + sendAmount + "送金されました");
+        targetPlayer.sendMessage(player.getName() + "さんから、" + sendAmount + "G送金されました");
 
         return true;
     }
